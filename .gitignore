@@ -26,6 +26,7 @@ logs/*.log.*
 # Data and model artifacts (small placeholders remain tracked)
 data/raw/*
 !data/raw/.gitkeep
+!data/raw/custom_ru_kk.csv
 data/processed/*
 !data/processed/.gitkeep
 ml/artifacts/*
