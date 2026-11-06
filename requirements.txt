@@ -1,0 +1,22 @@
+# Задание 2: библиотеки закреплены точными версиями для воспроизводимости.
+# Рекомендуется Python 3.11–3.13, 64-bit.
+Django==5.2.8
+djangorestframework==3.16.1
+python-dotenv==1.1.1
+
+# Библиотеки для заданий 3–8 (устанавливаются заранее)
+pandas==2.2.3
+numpy==2.2.6
+scikit-learn==1.6.1
+scipy==1.15.3
+nltk==3.9.1
+joblib==1.5.1
+langdetect==1.0.9
+tldextract==5.3.0
+matplotlib==3.10.3
+notebook==7.4.4
+
+# Тестирование
+pytest==8.4.1
+pytest-django==4.11.1
+pytest-cov==6.2.1

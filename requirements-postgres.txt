@@ -1,0 +1,2 @@
+# Добавляется при переходе с SQLite на PostgreSQL.
+psycopg[binary]==3.2.10

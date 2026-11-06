@@ -1,0 +1,15 @@
+:root { --navy: #0b1630; --ink: #17253c; --aqua: #58e4c8; }
+html { scroll-behavior: smooth; }
+body { min-height: 100vh; background: #f4f7fc; color: var(--ink); font-family: system-ui, -apple-system, 'Segoe UI', Arial, sans-serif; }
+.site-nav { background: var(--navy); }
+.brand-mark { display:inline-grid; place-items:center; width: 36px; height: 36px; border-radius: 12px; background: rgba(88,228,200,.12); color: var(--aqua); font-weight:800; }
+.navbar-brand { letter-spacing: -.02em; }
+.masthead { background: linear-gradient(120deg, #0b1630 0%, #193d58 100%); border-radius: 24px; padding: clamp(2rem,5vw,4rem); color:#fff; }
+.masthead .eyebrow { text-transform: uppercase; font-size: .74rem; letter-spacing: .14em; color: var(--aqua); font-weight: 700; }
+.masthead h1 { max-width: 700px; letter-spacing: -.035em; font-weight: 750; }
+.masthead p { color: #dce6f5; max-width: 670px; }
+.info-card { background: #fff; border: 1px solid #e3eaf3; border-radius: 18px; padding: 1.5rem; height: 100%; box-shadow: 0 8px 26px rgba(20,41,70,.035); }
+.step-label { font-size: .78rem; color:#56708e; text-transform: uppercase; letter-spacing: .05em; font-weight: 700; }
+.badge-dev { background: #d9f9ef; color: #195b4c; }
+.code-inline { background:#e9eef5; color:#233b5a; padding:.2rem .4rem; border-radius:.35rem; font-size:.92em; }
+.site-footer { color:#57708b; }

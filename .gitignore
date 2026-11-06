@@ -1,0 +1,39 @@
+# Python / virtual environment
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environment and keys
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Database and logs
+*.sqlite3
+*.sqlite3-journal
+logs/*.log
+logs/*.log.*
+
+# Data and model artifacts (small placeholders remain tracked)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+ml/artifacts/*
+!ml/artifacts/.gitkeep
+
+# Notebooks and OS/editor
+.ipynb_checkpoints/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
