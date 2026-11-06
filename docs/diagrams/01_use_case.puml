@@ -1,0 +1,41 @@
+@startuml
+left to right direction
+skinparam backgroundColor #FFFFFF
+skinparam usecase {BackgroundColor #F3F6FB; BorderColor #365879; ArrowColor #365879}
+skinparam actorStyle awesome
+skinparam defaultFontName DejaVu Sans
+actor "Пользователь" as User
+actor "Администратор" as Admin
+rectangle "SMS Guard — веб-приложение" {
+  usecase "UC-01\nРегистрация" as UC1
+  usecase "UC-02\nВход" as UC2
+  usecase "UC-03\nПроверка SMS" as UC3
+  usecase "UC-04\nПроверка URL" as UC4
+  usecase "UC-05\nRisk Score и объяснение" as UC5
+  usecase "UC-06\nИстория" as UC6
+  usecase "UC-07\nФильтр истории" as UC7
+  usecase "UC-08\nУдаление своей записи" as UC8
+  usecase "UC-09\nDashboard" as UC9
+  usecase "UC-10\nНастройка приватности" as UC10
+  usecase "UC-11\nВыход" as UC11
+  usecase "UC-12\nОбщая статистика" as UC12
+  usecase "UC-13\nВерсии моделей" as UC13
+}
+User -- UC1
+User -- UC2
+User -- UC3
+User -- UC4
+User -- UC5
+User -- UC6
+User -- UC7
+User -- UC8
+User -- UC9
+User -- UC10
+User -- UC11
+Admin -- UC12
+Admin -- UC13
+UC3 ..> UC5 : <<include>>
+UC4 ..> UC5 : <<include>>
+UC7 ..> UC6 : <<extend>>
+UC8 ..> UC6 : <<extend>>
+@enduml
