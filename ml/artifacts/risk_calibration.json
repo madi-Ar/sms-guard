@@ -1,0 +1,390 @@
+{
+  "calibrated_at": "2026-11-13T16:53:51.926907+00:00",
+  "sms_model": {
+    "algorithm": "MultinomialNB",
+    "parameters": {
+      "classifier__alpha": 0.1
+    },
+    "features": {
+      "algorithm": "MultinomialNB",
+      "include_chars": false,
+      "stop_words": null,
+      "parameter": {
+        "classifier__alpha": 0.1
+      },
+      "cv_f2": 0.9394576925848893
+    },
+    "train_only_rows": 3594,
+    "validation_rows": 770,
+    "reconstruction": "clone saved fixed Pipeline, fit only Train; no model saved"
+  },
+  "url_t2": 0.3173583761060298,
+  "test_used": false,
+  "protected_sha256": {
+    "data/processed/sms_clean.csv": "59d3976cf87cceea6821686269da5c06e66b5740a5c9f9d7882c50dc48e7907f",
+    "data/processed/sms_raw.csv": "446287fe37082aaa17319533ad123b479aa575f399033a3f35ed0c1751a70082",
+    "data/processed/sms_split.json": "d554ef9aa05c48063784b73a622f117a8fac272dde04718b39d639edb1e71f40",
+    "data/processed/url_dataset_meta.json": "216a4836f81eca6eb6aa74fee73bd45acb243dc50a877b3dd32db3a5e134d5d5",
+    "data/processed/url_features.parquet": "0217cac669a72cca1a92f65d40f368e3a350c215ec3180c14596eecff2a5cac4",
+    "data/processed/url_split.json": "b13450eeb71239b0f07a759b7698b82a83e6bba698c71994e41a71aba83a8916",
+    "data/raw/custom_ru_kk.csv": "44f6b698d59fdefa17755fb4386a82206c5522f7049ca97cec63e34a310e5667",
+    "ml/artifacts/sms_baseline.joblib": "44a8a8b440f9504c707c1597f47824c16424c21fd37c1098f6793bfd5495916b",
+    "ml/artifacts/sms_model.joblib": "57a49a9b64537072e3a5abed0acc82702787a49fc1933c3220bd38735530bd92",
+    "ml/artifacts/sms_model_meta.json": "d8b472aed9dd470761764d889ba77eb9649cadc9dc0fd4b8e0b3237a5593b862",
+    "ml/baseline.py": "b8221cc426d68b7016c3613d94b33000b2e5083935be510a201c353cdbede74d",
+    "ml/features.py": "2417cedd3a661ce7e029ff8b67752c21f7cb1ba64c3ef1bd099d7fe9057e0e18",
+    "ml/preprocessing.py": "9ae9b68dd5c3075b2d7a95d33ab1da09ba3fdad5d14859a7f58dc8100cfc0b54",
+    "ml/url_dataset.py": "19c046de950489d157d747fe1f479375c09ef65f2572ef24eea500c460215a89",
+    "ml/url_features.py": "d886b59e6089b7b59f646e21e2e802f1435a119e3a982fe46755047e602bb0e2",
+    "ml/artifacts/url_model.joblib": "8a3a5a17b29faf94a69c8dc0d7a5da4ab1821c6a6bda5813b8ea8f12aa895446",
+    "ml/artifacts/url_model_meta.json": "7261082d35d2c9485ab594c939b2165f7353de5f7b1be266e828eb848b9b2526"
+  },
+  "selected_index": 0,
+  "selected_config": {
+    "weights": {
+      "sms": 0.5,
+      "url": 0.3,
+      "social_engineering": 0.2
+    },
+    "levels": {
+      "medium": 35,
+      "high": 70
+    },
+    "overrides": {
+      "code_request_min": 70,
+      "combined_sms_threshold": 0.8,
+      "combined_min": 85,
+      "url_mask_min": 60
+    }
+  },
+  "results": [
+    {
+      "weights": {
+        "sms": 0.5,
+        "url": 0.3,
+        "social_engineering": 0.2
+      },
+      "config": {
+        "weights": {
+          "sms": 0.5,
+          "url": 0.3,
+          "social_engineering": 0.2
+        },
+        "levels": {
+          "medium": 35,
+          "high": 70
+        },
+        "overrides": {
+          "code_request_min": 70,
+          "combined_sms_threshold": 0.8,
+          "combined_min": 85,
+          "url_mask_min": 60
+        }
+      },
+      "en_validation": {
+        "rows": 770,
+        "positive": 92,
+        "negative": 678,
+        "detected_medium_high": 85,
+        "false_high": 0,
+        "recall_medium_high": 0.9239130434782609,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "ru_kk_development": {
+        "rows": 150,
+        "positive": 75,
+        "negative": 75,
+        "detected_medium_high": 36,
+        "false_high": 0,
+        "recall_medium_high": 0.48,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "ru": {
+        "rows": 100,
+        "positive": 50,
+        "negative": 50,
+        "detected_medium_high": 25,
+        "false_high": 0,
+        "recall_medium_high": 0.5,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "kk": {
+        "rows": 50,
+        "positive": 25,
+        "negative": 25,
+        "detected_medium_high": 11,
+        "false_high": 0,
+        "recall_medium_high": 0.44,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "normalized_violation": 0.5221967963386727
+    },
+    {
+      "weights": {
+        "sms": 0.6,
+        "url": 0.2,
+        "social_engineering": 0.2
+      },
+      "config": {
+        "weights": {
+          "sms": 0.6,
+          "url": 0.2,
+          "social_engineering": 0.2
+        },
+        "levels": {
+          "medium": 35,
+          "high": 70
+        },
+        "overrides": {
+          "code_request_min": 70,
+          "combined_sms_threshold": 0.8,
+          "combined_min": 85,
+          "url_mask_min": 60
+        }
+      },
+      "en_validation": {
+        "rows": 770,
+        "positive": 92,
+        "negative": 678,
+        "detected_medium_high": 85,
+        "false_high": 0,
+        "recall_medium_high": 0.9239130434782609,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "ru_kk_development": {
+        "rows": 150,
+        "positive": 75,
+        "negative": 75,
+        "detected_medium_high": 36,
+        "false_high": 0,
+        "recall_medium_high": 0.48,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "ru": {
+        "rows": 100,
+        "positive": 50,
+        "negative": 50,
+        "detected_medium_high": 25,
+        "false_high": 0,
+        "recall_medium_high": 0.5,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "kk": {
+        "rows": 50,
+        "positive": 25,
+        "negative": 25,
+        "detected_medium_high": 11,
+        "false_high": 0,
+        "recall_medium_high": 0.44,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "normalized_violation": 0.5221967963386727
+    },
+    {
+      "weights": {
+        "sms": 0.4,
+        "url": 0.3,
+        "social_engineering": 0.3
+      },
+      "config": {
+        "weights": {
+          "sms": 0.4,
+          "url": 0.3,
+          "social_engineering": 0.3
+        },
+        "levels": {
+          "medium": 35,
+          "high": 70
+        },
+        "overrides": {
+          "code_request_min": 70,
+          "combined_sms_threshold": 0.8,
+          "combined_min": 85,
+          "url_mask_min": 60
+        }
+      },
+      "en_validation": {
+        "rows": 770,
+        "positive": 92,
+        "negative": 678,
+        "detected_medium_high": 84,
+        "false_high": 0,
+        "recall_medium_high": 0.9130434782608695,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "ru_kk_development": {
+        "rows": 150,
+        "positive": 75,
+        "negative": 75,
+        "detected_medium_high": 35,
+        "false_high": 0,
+        "recall_medium_high": 0.4666666666666667,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "ru": {
+        "rows": 100,
+        "positive": 50,
+        "negative": 50,
+        "detected_medium_high": 25,
+        "false_high": 0,
+        "recall_medium_high": 0.5,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "kk": {
+        "rows": 50,
+        "positive": 25,
+        "negative": 25,
+        "detected_medium_high": 10,
+        "false_high": 0,
+        "recall_medium_high": 0.4,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "normalized_violation": 0.5476735316552249
+    },
+    {
+      "weights": {
+        "sms": 0.3,
+        "url": 0.3,
+        "social_engineering": 0.4
+      },
+      "config": {
+        "weights": {
+          "sms": 0.3,
+          "url": 0.3,
+          "social_engineering": 0.4
+        },
+        "levels": {
+          "medium": 35,
+          "high": 70
+        },
+        "overrides": {
+          "code_request_min": 70,
+          "combined_sms_threshold": 0.8,
+          "combined_min": 85,
+          "url_mask_min": 60
+        }
+      },
+      "en_validation": {
+        "rows": 770,
+        "positive": 92,
+        "negative": 678,
+        "detected_medium_high": 80,
+        "false_high": 0,
+        "recall_medium_high": 0.8695652173913043,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "ru_kk_development": {
+        "rows": 150,
+        "positive": 75,
+        "negative": 75,
+        "detected_medium_high": 35,
+        "false_high": 0,
+        "recall_medium_high": 0.4666666666666667,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "ru": {
+        "rows": 100,
+        "positive": 50,
+        "negative": 50,
+        "detected_medium_high": 25,
+        "false_high": 0,
+        "recall_medium_high": 0.5,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "kk": {
+        "rows": 50,
+        "positive": 25,
+        "negative": 25,
+        "detected_medium_high": 10,
+        "false_high": 0,
+        "recall_medium_high": 0.4,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "normalized_violation": 0.5934401220442409
+    },
+    {
+      "weights": {
+        "sms": 0.2,
+        "url": 0.3,
+        "social_engineering": 0.5
+      },
+      "config": {
+        "weights": {
+          "sms": 0.2,
+          "url": 0.3,
+          "social_engineering": 0.5
+        },
+        "levels": {
+          "medium": 35,
+          "high": 70
+        },
+        "overrides": {
+          "code_request_min": 70,
+          "combined_sms_threshold": 0.8,
+          "combined_min": 85,
+          "url_mask_min": 60
+        }
+      },
+      "en_validation": {
+        "rows": 770,
+        "positive": 92,
+        "negative": 678,
+        "detected_medium_high": 26,
+        "false_high": 0,
+        "recall_medium_high": 0.2826086956521739,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "ru_kk_development": {
+        "rows": 150,
+        "positive": 75,
+        "negative": 75,
+        "detected_medium_high": 31,
+        "false_high": 0,
+        "recall_medium_high": 0.41333333333333333,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "ru": {
+        "rows": 100,
+        "positive": 50,
+        "negative": 50,
+        "detected_medium_high": 23,
+        "false_high": 0,
+        "recall_medium_high": 0.46,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "kk": {
+        "rows": 50,
+        "positive": 25,
+        "negative": 25,
+        "detected_medium_high": 8,
+        "false_high": 0,
+        "recall_medium_high": 0.32,
+        "false_high_rate": 0.0,
+        "meets_targets": false
+      },
+      "normalized_violation": 1.2674294431731503
+    }
+  ],
+  "selection_policy": "Minimum sum of normalized violations on EN Validation and combined ru/kk; then largest worst recall; then candidate order",
+  "custom_set_status": "calibration/development, no longer independent test",
+  "target_semantics": "UCI label 1 is spam, a proxy and not confirmed fraud"
+}

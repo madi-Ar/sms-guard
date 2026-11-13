@@ -1,4 +1,4 @@
-"""Совместный анализ без Risk Score, сохранения, API и сетевых обращений."""
+"""Совместный анализ с Risk Score, без сохранения, API и сетевых обращений."""
 
 from dataclasses import asdict, dataclass, field
 import re
@@ -6,6 +6,7 @@ import re
 import tldextract
 
 from ml.predictor import get_predictor
+from ml.risk import MAX_EXPLANATIONS, compute_risk
 from ml.rules import find_social_engineering_groups
 from ml.url_dataset import normalize_url
 from ml.url_features import explain_url, extract_url_features, validate_url
@@ -46,7 +47,7 @@ class AnalysisResult:
     language: str | None = None
     category: str | None = None
     risk_level: str | None = None
-    risk_score: float | None = None
+    risk_score: int | None = None
     p_sms: float | None = None
     p_url_max: float | None = None
     urls: list[URLAnalysis] = field(default_factory=list)
@@ -125,15 +126,21 @@ def analyze_sms(text: str) -> AnalysisResult:
         except ValueError:
             # Ошибка отдельного адреса не отменяет анализ исходного SMS.
             continue
-    explanation = [f"Обнаружена группа признаков социальной инженерии: {group}" for group in groups]
+    p_url_max = max((result.p_url for result in results), default=None)
+    risk = compute_risk(sms["probability"], p_url_max, groups,
+                        [result.features for result in results], t2=predictor.url_metadata["t2"])
+    warnings = []
     if language in {"ru", "kk"}:
         name = "русского" if language == "ru" else "казахского"
-        explanation.append(f"Надёжность ML-оценки SMS для {name} языка снижена: модель обучена на английском корпусе.")
+        warnings.append(f"Надёжность ML-оценки SMS для {name} языка снижена: модель обучена на английском корпусе.")
     elif language == "und":
-        explanation.append("Недостаточно букв для надёжного определения языка SMS.")
+        warnings.append("Недостаточно букв для надёжного определения языка SMS.")
     if results:
-        explanation.append(URL_WARNING)
+        warnings.append(URL_WARNING)
     return AnalysisResult(language=language, p_sms=sms["probability"],
-        p_url_max=max((result.p_url for result in results), default=None), urls=results,
+        p_url_max=p_url_max, urls=results,
         features={"sms_label": sms["label"], "social_engineering_groups": groups},
-        explanation=explanation, model_versions=predictor.versions)
+        risk_score=risk.risk_score, risk_level=risk.risk_level, category=risk.category,
+        recommendation=risk.recommendation,
+        explanation=risk.explanation[:MAX_EXPLANATIONS - len(warnings)] + warnings,
+        model_versions=predictor.versions)

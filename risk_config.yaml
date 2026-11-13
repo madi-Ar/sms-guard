@@ -1,3 +1,14 @@
-# Заготовка конфигурации Risk Score.
-# Пороги и веса определяются по валидации в задании 13.
-# Не использовать примерные пороги вместо результатов экспериментов.
+# Выбрано калибровкой №13; границы и override не подбирались.
+# URL t2 берётся из метаданных итоговой URL-модели.
+weights:
+  sms: 0.5
+  url: 0.3
+  social_engineering: 0.2
+levels:
+  medium: 35
+  high: 70
+overrides:
+  code_request_min: 70
+  combined_sms_threshold: 0.8
+  combined_min: 85
+  url_mask_min: 60

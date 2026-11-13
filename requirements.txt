@@ -3,6 +3,7 @@
 Django==5.2.8
 djangorestframework==3.16.1
 python-dotenv==1.1.1
+PyYAML==6.0.3
 
 # Библиотеки для заданий 3–8 (устанавливаются заранее)
 pandas==2.2.3

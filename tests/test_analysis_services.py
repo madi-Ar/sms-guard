@@ -46,15 +46,19 @@ def fake_predictor(monkeypatch):
     return instance, sms, url
 
 
-def test_sms_without_urls_keeps_pending_fields_empty(fake_predictor):
+def test_sms_without_urls_fills_risk_but_does_not_fake_storage(fake_predictor):
     result = services.analyze_sms("Bring the blue notebook tomorrow.")
     assert isinstance(result, services.AnalysisResult)
     assert result.type == "sms" and result.language == "en"
     assert result.urls == [] and result.p_url_max is None
     assert result.p_sms == .4 and result.features["sms_label"] == 1
     assert result.features["social_engineering_groups"] == []
-    for key in ("id", "created_at", "category", "risk_level", "risk_score", "recommendation"):
+    for key in ("id", "created_at"):
         assert getattr(result, key) is None
+    assert type(result.risk_score) is int and 0 <= result.risk_score <= 100
+    assert result.category in {"SAFE", "SUSPICIOUS", "FRAUDULENT"}
+    assert result.risk_level in {"LOW", "MEDIUM", "HIGH"}
+    assert result.recommendation and 1 <= len(result.explanation) <= 6
     assert result.model_versions == {"sms": "sms-test", "url": "url-test"}
     assert "вероятностный" in result.disclaimer
 
@@ -63,7 +67,7 @@ def test_sms_with_one_url(fake_predictor):
     result = services.analyze_sms("Open https://example.com/a?q=1.")
     assert [u.url for u in result.urls] == ["https://example.com/a?q=1"]
     assert result.p_url_max == .1 and result.urls[0].category == "SAFE"
-    assert result.category is None
+    assert result.category in {"SAFE", "SUSPICIOUS", "FRAUDULENT"}
     assert services.URL_WARNING in result.explanation
 
 
@@ -75,6 +79,7 @@ def test_only_first_three_urls_are_analyzed_in_order(fake_predictor, count):
     assert [r.category for r in result.urls] == ["SAFE", "SUSPICIOUS", "DANGEROUS"]
     assert result.p_url_max == .9
     assert len(fake_predictor[2].calls) == 3
+    assert len(fake_predictor[1].calls) == 1  # Risk Score не вызывает повторных предсказаний.
 
 
 def test_standalone_url_has_original_url_probability_and_all_features(fake_predictor):
@@ -150,7 +155,19 @@ def test_phrase_whitespace_case_boundaries_and_group_deduplication():
 def test_sms_with_several_rule_groups(fake_predictor):
     result = services.analyze_sms("URGENT! transfer money; card number; account blocked; claim your prize; send the code")
     assert result.features["social_engineering_groups"] == list(RULES)
-    assert result.risk_score is None and result.recommendation is None
+    assert result.risk_score >= 70 and result.recommendation
+    assert result.risk_level == "HIGH" and result.category == "FRAUDULENT"
+
+
+def test_risk_keeps_warnings_and_url_category_without_new_predictions(fake_predictor):
+    result = services.analyze_sms("Срочно! URGENT transfer money; card number; account blocked; "
+                                  "claim your prize; send the code https://example.com")
+    assert result.category == "FRAUDULENT" and result.urls[0].category == "SAFE"
+    assert len(result.explanation) <= 6
+    assert any("снижена" in reason for reason in result.explanation)
+    assert services.URL_WARNING in result.explanation
+    assert result.disclaimer and result.id is None and result.created_at is None
+    assert len(fake_predictor[1].calls) == len(fake_predictor[2].calls) == 1
 
 
 def test_sms_reaches_predictor_without_preprocessing(fake_predictor):
