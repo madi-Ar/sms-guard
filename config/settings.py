@@ -101,12 +101,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Базовые настройки безопасности. HTTPS и cookie Secure включаются при развёртывании.
 SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = env_bool('DJANGO_COOKIE_SECURE', not DEBUG)
+CSRF_COOKIE_SECURE = SESSION_COOKIE_SECURE
 SESSION_COOKIE_SAMESITE = 'Lax'
 CSRF_COOKIE_SAMESITE = 'Lax'
 X_CONTENT_TYPE_OPTIONS = 'nosniff'
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': ['rest_framework.renderers.JSONRenderer'],
+    'DEFAULT_AUTHENTICATION_CLASSES': ['apps.analysis.api.APISessionAuthentication'],
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
+    'EXCEPTION_HANDLER': 'apps.analysis.api.api_exception_handler',
 }
 
 # Папка для логов создаётся до конфигурирования RotatingFileHandler.
