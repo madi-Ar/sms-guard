@@ -63,12 +63,16 @@ def manual_features(pairs) -> csr_matrix:
     return csr_matrix(np.asarray(rows, dtype=float).reshape(-1, 6))
 
 
-def create_feature_pipeline() -> Pipeline:
-    """Принимает последовательность исходных SMS и возвращает разреженные признаки."""
+def create_feature_pipeline(*, include_chars=True, stop_words=None) -> Pipeline:
+    """Разреженные признаки; stop_words меняет только словесную ветвь.
+
+    Ручные признаки неизменны; defaults сохраняют поведение задания №6.
+    """
     words = Pipeline([
         ("text", FunctionTransformer(_clean_texts)),
         ("tfidf", TfidfVectorizer(
             ngram_range=(1, 2), min_df=2, max_df=0.95, sublinear_tf=True,
+            stop_words=stop_words,
         )),
     ])
     chars = Pipeline([
@@ -79,7 +83,7 @@ def create_feature_pipeline() -> Pipeline:
         ("normalize", FunctionTransformer(_prepare_texts)),
         ("features", FeatureUnion([
             ("word", words),
-            ("char", chars),
+            *([("char", chars)] if include_chars else []),
             ("manual", FunctionTransformer(manual_features)),
         ])),
     ])

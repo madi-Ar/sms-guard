@@ -1,0 +1,575 @@
+{
+  "version": "1.0.0",
+  "trained_at": "2026-11-13T14:41:20.264137+00:00",
+  "algorithm": "MultinomialNB",
+  "parameters": {
+    "classifier__alpha": 0.1
+  },
+  "feature_configuration": {
+    "algorithm": "MultinomialNB",
+    "include_chars": false,
+    "stop_words": null,
+    "parameter": {
+      "classifier__alpha": 0.1
+    },
+    "cv_f2": 0.9394576925848893
+  },
+  "threshold": 0.07675798320542866,
+  "test_metrics": {
+    "accuracy": 0.9494163424124513,
+    "precision": 0.7288135593220338,
+    "recall": 0.9247311827956989,
+    "f1": 0.8151658767772512,
+    "f2": 0.8775510204081632,
+    "roc_auc": 0.9790655628508896,
+    "pr_auc": 0.9506300262113972,
+    "confusion_matrix": [
+      [
+        646,
+        32
+      ],
+      [
+        7,
+        86
+      ]
+    ]
+  },
+  "test_evaluated_before_refit": true,
+  "fit_sizes": {
+    "train": 3594,
+    "validation": 770,
+    "test": 771,
+    "final": 4364
+  },
+  "language_metrics": {
+    "ru": {
+      "accuracy": 0.28,
+      "precision": 0.3472222222222222,
+      "recall": 0.5,
+      "f1": 0.4098360655737705,
+      "f2": 0.45955882352941174,
+      "roc_auc": 0.5002,
+      "pr_auc": 0.7141286699745533,
+      "confusion_matrix": [
+        [
+          3,
+          47
+        ],
+        [
+          25,
+          25
+        ]
+      ]
+    },
+    "kk": {
+      "accuracy": 0.26,
+      "precision": 0.34210526315789475,
+      "recall": 0.52,
+      "f1": 0.4126984126984127,
+      "f2": 0.47101449275362317,
+      "roc_auc": 0.52,
+      "pr_auc": 0.7292773950588405,
+      "confusion_matrix": [
+        [
+          0,
+          25
+        ],
+        [
+          12,
+          13
+        ]
+      ]
+    }
+  },
+  "comparison": [
+    {
+      "algorithm": "MultinomialNB",
+      "configuration": {
+        "algorithm": "MultinomialNB",
+        "include_chars": false,
+        "stop_words": null,
+        "parameter": {
+          "classifier__alpha": 0.1
+        },
+        "cv_f2": 0.9394576925848893
+      },
+      "threshold": 0.07675798320542866,
+      "training_seconds": 0.8612422943115234,
+      "search_seconds": 72.65350369999942,
+      "prediction_ms": 5.26038000001184,
+      "default_metrics": {
+        "accuracy": 0.9896103896103896,
+        "precision": 0.9883720930232558,
+        "recall": 0.9239130434782609,
+        "f1": 0.9550561797752809,
+        "f2": 0.9361233480176211,
+        "roc_auc": 0.9932987046299858,
+        "pr_auc": 0.9868142062125806,
+        "confusion_matrix": [
+          [
+            677,
+            1
+          ],
+          [
+            7,
+            85
+          ]
+        ]
+      },
+      "validation_metrics": {
+        "accuracy": 0.977922077922078,
+        "precision": 0.8571428571428571,
+        "recall": 0.9782608695652174,
+        "f1": 0.9137055837563451,
+        "f2": 0.9513742071881607,
+        "roc_auc": 0.9932987046299858,
+        "pr_auc": 0.9868142062125806,
+        "confusion_matrix": [
+          [
+            663,
+            15
+          ],
+          [
+            2,
+            90
+          ]
+        ]
+      }
+    },
+    {
+      "algorithm": "LogisticRegression",
+      "configuration": {
+        "algorithm": "LogisticRegression",
+        "include_chars": true,
+        "stop_words": null,
+        "parameter": {
+          "classifier__C": 10.0
+        },
+        "cv_f2": 0.9480768606627654
+      },
+      "threshold": 0.1476564268417494,
+      "training_seconds": 10.183734893798828,
+      "search_seconds": 208.28321829999913,
+      "prediction_ms": 7.366546666647385,
+      "default_metrics": {
+        "accuracy": 0.9883116883116884,
+        "precision": 0.9662921348314607,
+        "recall": 0.9347826086956522,
+        "f1": 0.9502762430939227,
+        "f2": 0.9409190371991247,
+        "roc_auc": 0.9977715788123638,
+        "pr_auc": 0.9893239163403071,
+        "confusion_matrix": [
+          [
+            675,
+            3
+          ],
+          [
+            6,
+            86
+          ]
+        ]
+      },
+      "validation_metrics": {
+        "accuracy": 0.977922077922078,
+        "precision": 0.8571428571428571,
+        "recall": 0.9782608695652174,
+        "f1": 0.9137055837563451,
+        "f2": 0.9513742071881607,
+        "roc_auc": 0.9977715788123638,
+        "pr_auc": 0.9893239163403071,
+        "confusion_matrix": [
+          [
+            663,
+            15
+          ],
+          [
+            2,
+            90
+          ]
+        ]
+      }
+    },
+    {
+      "algorithm": "LinearSVC",
+      "configuration": {
+        "algorithm": "LinearSVC",
+        "include_chars": true,
+        "stop_words": null,
+        "parameter": {
+          "estimator__classifier__C": 1.0
+        },
+        "cv_f2": 0.9430830633503078
+      },
+      "threshold": 0.08433548910495327,
+      "training_seconds": 11.2839195728302,
+      "search_seconds": 460.9438164000021,
+      "prediction_ms": 34.16264666666393,
+      "default_metrics": {
+        "accuracy": 0.987012987012987,
+        "precision": 1.0,
+        "recall": 0.8913043478260869,
+        "f1": 0.9425287356321839,
+        "f2": 0.9111111111111111,
+        "roc_auc": 0.9979639604976273,
+        "pr_auc": 0.9902019856819501,
+        "confusion_matrix": [
+          [
+            678,
+            0
+          ],
+          [
+            10,
+            82
+          ]
+        ]
+      },
+      "validation_metrics": {
+        "accuracy": 0.977922077922078,
+        "precision": 0.8571428571428571,
+        "recall": 0.9782608695652174,
+        "f1": 0.9137055837563451,
+        "f2": 0.9513742071881607,
+        "roc_auc": 0.9979639604976273,
+        "pr_auc": 0.9902019856819501,
+        "confusion_matrix": [
+          [
+            663,
+            15
+          ],
+          [
+            2,
+            90
+          ]
+        ]
+      }
+    }
+  ],
+  "experiments": [
+    {
+      "algorithm": "MultinomialNB",
+      "include_chars": false,
+      "stop_words": null,
+      "parameter": {
+        "classifier__alpha": 0.1
+      },
+      "cv_f2": 0.9394576925848893
+    },
+    {
+      "algorithm": "MultinomialNB",
+      "include_chars": false,
+      "stop_words": null,
+      "parameter": {
+        "classifier__alpha": 0.5
+      },
+      "cv_f2": 0.6636160786980294
+    },
+    {
+      "algorithm": "MultinomialNB",
+      "include_chars": false,
+      "stop_words": null,
+      "parameter": {
+        "classifier__alpha": 1.0
+      },
+      "cv_f2": 0.1993560349143598
+    },
+    {
+      "algorithm": "MultinomialNB",
+      "include_chars": false,
+      "stop_words": "english",
+      "parameter": {
+        "classifier__alpha": 0.1
+      },
+      "cv_f2": 0.9284982111528912
+    },
+    {
+      "algorithm": "MultinomialNB",
+      "include_chars": false,
+      "stop_words": "english",
+      "parameter": {
+        "classifier__alpha": 0.5
+      },
+      "cv_f2": 0.7679127276992563
+    },
+    {
+      "algorithm": "MultinomialNB",
+      "include_chars": false,
+      "stop_words": "english",
+      "parameter": {
+        "classifier__alpha": 1.0
+      },
+      "cv_f2": 0.3894521144645512
+    },
+    {
+      "algorithm": "MultinomialNB",
+      "include_chars": true,
+      "stop_words": null,
+      "parameter": {
+        "classifier__alpha": 0.1
+      },
+      "cv_f2": 0.9368647687612726
+    },
+    {
+      "algorithm": "MultinomialNB",
+      "include_chars": true,
+      "stop_words": null,
+      "parameter": {
+        "classifier__alpha": 0.5
+      },
+      "cv_f2": 0.17493590502685336
+    },
+    {
+      "algorithm": "MultinomialNB",
+      "include_chars": true,
+      "stop_words": null,
+      "parameter": {
+        "classifier__alpha": 1.0
+      },
+      "cv_f2": 0.0
+    },
+    {
+      "algorithm": "MultinomialNB",
+      "include_chars": true,
+      "stop_words": "english",
+      "parameter": {
+        "classifier__alpha": 0.1
+      },
+      "cv_f2": 0.9332874436676345
+    },
+    {
+      "algorithm": "MultinomialNB",
+      "include_chars": true,
+      "stop_words": "english",
+      "parameter": {
+        "classifier__alpha": 0.5
+      },
+      "cv_f2": 0.16951313543015578
+    },
+    {
+      "algorithm": "MultinomialNB",
+      "include_chars": true,
+      "stop_words": "english",
+      "parameter": {
+        "classifier__alpha": 1.0
+      },
+      "cv_f2": 0.0
+    },
+    {
+      "algorithm": "LogisticRegression",
+      "include_chars": false,
+      "stop_words": null,
+      "parameter": {
+        "classifier__C": 0.1
+      },
+      "cv_f2": 0.8199335692210873
+    },
+    {
+      "algorithm": "LogisticRegression",
+      "include_chars": false,
+      "stop_words": null,
+      "parameter": {
+        "classifier__C": 1.0
+      },
+      "cv_f2": 0.9264008048907245
+    },
+    {
+      "algorithm": "LogisticRegression",
+      "include_chars": false,
+      "stop_words": null,
+      "parameter": {
+        "classifier__C": 10.0
+      },
+      "cv_f2": 0.9415811483945573
+    },
+    {
+      "algorithm": "LogisticRegression",
+      "include_chars": false,
+      "stop_words": "english",
+      "parameter": {
+        "classifier__C": 0.1
+      },
+      "cv_f2": 0.8165290356568429
+    },
+    {
+      "algorithm": "LogisticRegression",
+      "include_chars": false,
+      "stop_words": "english",
+      "parameter": {
+        "classifier__C": 1.0
+      },
+      "cv_f2": 0.9142540659316604
+    },
+    {
+      "algorithm": "LogisticRegression",
+      "include_chars": false,
+      "stop_words": "english",
+      "parameter": {
+        "classifier__C": 10.0
+      },
+      "cv_f2": 0.9405618027836514
+    },
+    {
+      "algorithm": "LogisticRegression",
+      "include_chars": true,
+      "stop_words": null,
+      "parameter": {
+        "classifier__C": 0.1
+      },
+      "cv_f2": 0.8849806248871122
+    },
+    {
+      "algorithm": "LogisticRegression",
+      "include_chars": true,
+      "stop_words": null,
+      "parameter": {
+        "classifier__C": 1.0
+      },
+      "cv_f2": 0.9366767999725324
+    },
+    {
+      "algorithm": "LogisticRegression",
+      "include_chars": true,
+      "stop_words": null,
+      "parameter": {
+        "classifier__C": 10.0
+      },
+      "cv_f2": 0.9480768606627654
+    },
+    {
+      "algorithm": "LogisticRegression",
+      "include_chars": true,
+      "stop_words": "english",
+      "parameter": {
+        "classifier__C": 0.1
+      },
+      "cv_f2": 0.8837666125446575
+    },
+    {
+      "algorithm": "LogisticRegression",
+      "include_chars": true,
+      "stop_words": "english",
+      "parameter": {
+        "classifier__C": 1.0
+      },
+      "cv_f2": 0.9326965709334676
+    },
+    {
+      "algorithm": "LogisticRegression",
+      "include_chars": true,
+      "stop_words": "english",
+      "parameter": {
+        "classifier__C": 10.0
+      },
+      "cv_f2": 0.9431336247528253
+    },
+    {
+      "algorithm": "LinearSVC",
+      "include_chars": false,
+      "stop_words": null,
+      "parameter": {
+        "estimator__classifier__C": 0.1
+      },
+      "cv_f2": 0.9073285238386282
+    },
+    {
+      "algorithm": "LinearSVC",
+      "include_chars": false,
+      "stop_words": null,
+      "parameter": {
+        "estimator__classifier__C": 1.0
+      },
+      "cv_f2": 0.9345244533885733
+    },
+    {
+      "algorithm": "LinearSVC",
+      "include_chars": false,
+      "stop_words": null,
+      "parameter": {
+        "estimator__classifier__C": 10.0
+      },
+      "cv_f2": 0.9354211561096545
+    },
+    {
+      "algorithm": "LinearSVC",
+      "include_chars": false,
+      "stop_words": "english",
+      "parameter": {
+        "estimator__classifier__C": 0.1
+      },
+      "cv_f2": 0.8859536907479642
+    },
+    {
+      "algorithm": "LinearSVC",
+      "include_chars": false,
+      "stop_words": "english",
+      "parameter": {
+        "estimator__classifier__C": 1.0
+      },
+      "cv_f2": 0.906269383691869
+    },
+    {
+      "algorithm": "LinearSVC",
+      "include_chars": false,
+      "stop_words": "english",
+      "parameter": {
+        "estimator__classifier__C": 10.0
+      },
+      "cv_f2": 0.9050799297887844
+    },
+    {
+      "algorithm": "LinearSVC",
+      "include_chars": true,
+      "stop_words": null,
+      "parameter": {
+        "estimator__classifier__C": 0.1
+      },
+      "cv_f2": 0.9248210432341789
+    },
+    {
+      "algorithm": "LinearSVC",
+      "include_chars": true,
+      "stop_words": null,
+      "parameter": {
+        "estimator__classifier__C": 1.0
+      },
+      "cv_f2": 0.9430830633503078
+    },
+    {
+      "algorithm": "LinearSVC",
+      "include_chars": true,
+      "stop_words": null,
+      "parameter": {
+        "estimator__classifier__C": 10.0
+      },
+      "cv_f2": 0.9420473009492614
+    },
+    {
+      "algorithm": "LinearSVC",
+      "include_chars": true,
+      "stop_words": "english",
+      "parameter": {
+        "estimator__classifier__C": 0.1
+      },
+      "cv_f2": 0.914035057795475
+    },
+    {
+      "algorithm": "LinearSVC",
+      "include_chars": true,
+      "stop_words": "english",
+      "parameter": {
+        "estimator__classifier__C": 1.0
+      },
+      "cv_f2": 0.9403100917312639
+    },
+    {
+      "algorithm": "LinearSVC",
+      "include_chars": true,
+      "stop_words": "english",
+      "parameter": {
+        "estimator__classifier__C": 10.0
+      },
+      "cv_f2": 0.9378363956305134
+    }
+  ],
+  "pr_auc_method": "average_precision_score (non-interpolated AP)"
+}
