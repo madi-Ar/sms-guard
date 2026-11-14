@@ -1,18 +1,22 @@
 {% extends 'base.html' %}
-{% block title %}SMS Guard — главная{% endblock %}
+{% block title %}SMS Guard — проверка сообщений и ссылок{% endblock %}
 {% block content %}
-<section class="masthead mb-4" aria-labelledby="page-title">
-  <p class="eyebrow mb-3">Этап 1 · Задание 2 из 18</p>
-  <h1 class="display-5 mb-3" id="page-title">Интеллектуальная система обнаружения мошеннических SMS и подозрительных ссылок</h1>
-  <p class="lead mb-3">Здесь появится проверка SMS-сообщений и URL с помощью двух моделей машинного обучения и объяснением риска.</p>
-  <span class="badge badge-dev px-3 py-2">Каркас приложения запущен</span>
+<section class="page-intro">
+  <p class="eyebrow">Анализ цифровых угроз</p>
+  <h1>Проверьте сообщение,<br class="d-none d-md-inline"> прежде чем действовать</h1>
+  <p class="intro-description">Анализ SMS и ссылок с объяснением признаков риска. Результат помогает оценить сообщение и принять решение.</p>
 </section>
-<div class="row g-3">
-  <div class="col-md-4"><section class="info-card"><p class="step-label">Модуль 01</p><h2 class="h5">Аккаунты</h2><p class="text-secondary mb-0">Регистрация и авторизация будут реализованы в следующих заданиях.</p></section></div>
-  <div class="col-md-4"><section class="info-card"><p class="step-label">Модуль 02</p><h2 class="h5">Анализ SMS и URL</h2><p class="text-secondary mb-0">Сначала подготовим данные, затем обучим и подключим модели.</p></section></div>
-  <div class="col-md-4"><section class="info-card"><p class="step-label">Модуль 03</p><h2 class="h5">Dashboard</h2><p class="text-secondary mb-0">История проверок, статистика и графики появятся на следующих этапах.</p></section></div>
+<div class="row g-4">
+  <div class="col-md-6"><section class="info-card h-100">
+    <span class="section-number">01 / Сообщения</span><h2 class="h4 mt-3">Проверка SMS</h2>
+    <p>Введите сообщение, чтобы получить оценку риска, признаки социальной инженерии и рекомендации.</p>
+    <a class="btn btn-primary" href="{% url 'check-sms' %}">Проверить сообщение</a>
+  </section></div>
+  <div class="col-md-6"><section class="info-card h-100">
+    <span class="section-number">02 / Ссылки</span><h2 class="h4 mt-3">Проверка ссылки</h2>
+    <p>Оцените структуру адреса. Ссылка анализируется как текст. Сайт не открывается.</p>
+    <a class="btn btn-outline-primary" href="{% url 'check-url' %}">Проверить ссылку</a>
+  </section></div>
 </div>
-<section class="mt-4" aria-label="Служебная проверка">
-  <p class="mb-0 text-secondary">Проверить статус приложения: <a href="{% url 'api-health' %}"><code class="code-inline">/api/v1/health/</code></a> — ожидается JSON <code>{"status": "ok"}</code>.</p>
-</section>
+<p class="notice mt-4">Оценка носит вероятностный характер и не гарантирует безопасность. Модель SMS обучена на англоязычном корпусе спама.</p>
 {% endblock %}

@@ -1,4 +1,7 @@
 """Сессионный вход с CSRF, без записи учётных данных в журналы."""
+from django.shortcuts import redirect, render
+from django.views.decorators.http import require_GET
+
 import hashlib
 
 from django.contrib.auth import authenticate, get_user_model, login, logout
@@ -61,3 +64,10 @@ class LogoutView(APIView):
     def post(self, request):
         logout(request)
         return Response(status=204)
+
+
+@require_GET
+def auth_page(request, mode):
+    if request.user.is_authenticated:
+        return redirect('check-sms')
+    return render(request, 'accounts/auth.html', {'mode': mode})

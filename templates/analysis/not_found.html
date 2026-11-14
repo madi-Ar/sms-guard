@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}Запись не найдена — SMS Guard{% endblock %}
+{% block content %}
+<section class="info-card"><h1>Запись не найдена</h1>
+<p>Результат удалён или недоступен вашему аккаунту.</p>
+<a class="btn btn-primary" href="{% url 'check-sms' %}">К проверке SMS</a></section>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% if kind == 'sms' %}Проверка SMS{% else %}Проверка ссылки{% endif %} — SMS Guard{% endblock %}
+{% block scripts %}<script src="{% static 'js/analysis.js' %}" defer></script>{% endblock %}
+{% block content %}
+<section class="page-intro compact">
+  <p class="eyebrow">Анализ угроз / {% if kind == 'sms' %}Сообщения{% else %}Ссылки{% endif %}</p>
+  <h1>{% if kind == 'sms' %}Проверка SMS{% else %}Проверка ссылки{% endif %}</h1>
+  <p class="intro-description">{% if kind == 'sms' %}Вставьте текст сообщения. Система оценит признаки риска и объяснит результат.{% else %}Ссылка анализируется как текст. Сайт не открывается.{% endif %}</p>
+</section>
+<div class="row g-4 align-items-start">
+  <div class="col-lg-7">
+    <section class="info-card">
+      <form id="check-form" data-kind="{{ kind }}" data-endpoint="{% if kind == 'sms' %}{% url 'api-check-sms' %}{% else %}{% url 'api-check-url' %}{% endif %}" novalidate>
+        {% csrf_token %}
+        <label class="form-label fw-semibold" for="check-input">{% if kind == 'sms' %}Текст SMS{% else %}Адрес ссылки{% endif %}</label>
+        {% if kind == 'sms' %}
+        <textarea id="check-input" name="text" class="form-control" rows="7" maxlength="1000" required aria-describedby="input-help input-error counter"></textarea>
+        <div class="d-flex justify-content-between gap-3 mt-2"><span id="input-help" class="small text-secondary">До 1000 символов</span><output id="counter" for="check-input" class="small">0/1000</output></div>
+        {% else %}
+        <input id="check-input" name="url" type="text" inputmode="url" class="form-control" maxlength="2048" required autocomplete="off" spellcheck="false" aria-describedby="input-help input-error">
+        <p id="input-help" class="small text-secondary mt-2">До 2048 символов. Можно указать адрес без https://.</p>
+        {% endif %}
+        <p id="input-error" class="field-error mt-2" role="alert" aria-live="polite" hidden></p>
+        <div class="form-actions mt-3">
+          <button class="btn btn-primary" type="submit">{% if kind == 'sms' %}Проверить сообщение{% else %}Проверить ссылку{% endif %}</button>
+          <button id="clear-button" class="btn btn-outline-secondary" type="button">Очистить</button>
+        </div>
+        <p class="loading mt-3 mb-0" role="status" aria-live="polite" hidden><span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Выполняется анализ…</p>
+      </form>
+      {% if kind == 'sms' %}
+      <div class="example-section mt-4">
+        <p class="small fw-semibold mb-2">Искусственные примеры</p>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-sm btn-outline-secondary" type="button" data-example="safe">Безопасное</button>
+          <button class="btn btn-sm btn-outline-secondary" type="button" data-example="suspicious">Подозрительное</button>
+          <button class="btn btn-sm btn-outline-secondary" type="button" data-example="fraud">Мошенническое</button>
+        </div>
+        <p class="small text-secondary mt-2 mb-0">Подписи обозначают сценарий примера. Фактический результат рассчитывает модель.</p>
+      </div>
+      {% endif %}
+    </section>
+  </div>
+  <div class="col-lg-5"><aside class="info-card guide-card">
+    <h2 class="h5">Как читать результат</h2>
+    <p>{% if kind == 'sms' %}Оценка объединяет текст сообщения, найденные ссылки и группы признаков социальной инженерии.{% else %}Модель оценивает только признаки адреса. Содержимое сайта не исследуется.{% endif %}</p>
+    <p class="small mb-0">{% if kind == 'sms' %}Для русского и казахского языков надёжность текстовой модели снижена. Предупреждения будут показаны вместе с результатом.{% else %}URL-модель зависит от артефактов обучающего датасета и может ошибочно помечать известные безопасные сайты как опасные.{% endif %}</p>
+  </aside></div>
+</div>
+<section id="result" class="info-card result-card mt-4" tabindex="-1" aria-live="polite" aria-label="Результат проверки" hidden></section>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Результат проверки №{{ check.pk }} — SMS Guard{% endblock %}
+{% block scripts %}<script src="{% static 'js/analysis.js' %}" defer></script>{% endblock %}
+{% block content %}
+<section class="page-intro compact"><p class="eyebrow">Сохранённая проверка</p><h1>Результат проверки №{{ check.pk }}</h1>
+<p class="intro-description">Исходный ввод отображается в маскированном виде.</p></section>
+<div id="saved-check" data-endpoint="{% url 'api-check-detail' check.pk %}">
+  <p class="loading" role="status"><span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Загрузка результата…</p>
+  <p id="detail-error" class="field-error" role="alert" aria-live="polite" hidden></p>
+  <button id="retry-result" class="btn btn-outline-primary mb-3" type="button" hidden>Повторить загрузку</button>
+</div>
+<section id="result" class="info-card result-card" tabindex="-1" aria-live="polite" aria-label="Результат проверки" hidden></section>
+{% endblock %}
