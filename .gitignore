@@ -40,3 +40,5 @@ ml/artifacts/*
 Thumbs.db
 
 .pytest_task*_temp/
+
+.pytest_task*/
