@@ -4,11 +4,14 @@
 {% block scripts %}<script src="{% static 'js/analysis.js' %}" defer></script>{% endblock %}
 {% block content %}
 <section class="page-intro compact"><p class="eyebrow">Сохранённая проверка</p><h1>Результат проверки №{{ check.pk }}</h1>
-<p class="intro-description">Исходный ввод отображается в маскированном виде.</p></section>
+<p class="intro-description">{% if check.input_text != None %}Полный текст сохранён с вашего согласия.{% else %}Исходный ввод отображается в маскированном виде.{% endif %}</p>
+{% if check.demo_key %}<p class="alert alert-warning">Искусственный демонстрационный результат. Это не предсказание ML-моделей.</p>{% endif %}</section>
 <div id="saved-check" data-endpoint="{% url 'api-check-detail' check.pk %}">
   <p class="loading" role="status"><span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Загрузка результата…</p>
   <p id="detail-error" class="field-error" role="alert" aria-live="polite" hidden></p>
   <button id="retry-result" class="btn btn-outline-primary mb-3" type="button" hidden>Повторить загрузку</button>
 </div>
 <section id="result" class="info-card result-card" tabindex="-1" aria-live="polite" aria-label="Результат проверки" hidden></section>
+<form method="post" action="{% url 'check-delete' check.pk %}" class="mt-4">{% csrf_token %}<label><input type="checkbox" name="confirm" value="yes" required> Подтверждаю удаление этой проверки</label> <button class="btn btn-outline-danger" type="submit">Удалить</button></form>
+<a href="{% url 'history' %}">Вернуться в историю</a>
 {% endblock %}

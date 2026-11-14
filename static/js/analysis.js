@@ -91,8 +91,11 @@
         heading.append(element("h2", "Результат проверки", "h4 mb-0"), categoryBadge(data.category));
         target.append(heading);
         if (typeof data.masked_input === "string" || source) {
-            target.append(element("h3", typeof data.masked_input === "string" ? "Маскированный ввод" : "Проверенный текст"));
-            target.append(element("p", data.masked_input ?? source, "plain-input"));
+            target.append(element("h3", typeof data.input_text === "string" ? "Сохранённый текст SMS" : (typeof data.masked_input === "string" ? "Маскированный ввод" : "Проверенный текст")));
+            if (typeof data.input_text === "string") {
+                target.append(element("p", "Полный текст сохранён с согласия пользователя", "small"));
+            }
+            target.append(element("p", data.input_text ?? data.masked_input ?? source, "plain-input"));
         }
         if (data.created_at) {
             const date = new Date(data.created_at);

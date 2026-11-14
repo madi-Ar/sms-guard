@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}История — SMS Guard{% endblock %}
+{% block content %}
+<h1>История проверок</h1>
+<form method="get" class="info-card row g-3 mb-4">
+<div class="col-sm-6 col-lg-2"><label for="date-from">С даты</label><input class="form-control" type="date" id="date-from" name="date_from" value="{{ request.GET.date_from }}"></div>
+<div class="col-sm-6 col-lg-2"><label for="date-to">По дату</label><input class="form-control" type="date" id="date-to" name="date_to" value="{{ request.GET.date_to }}"></div>
+<div class="col-sm-4 col-lg-2"><label for="filter-type">Тип</label><select class="form-select" id="filter-type" name="type"><option value="">Все</option>{% for value,title in types %}<option value="{{ value }}" {% if request.GET.type == value %}selected{% endif %}>{{ title }}</option>{% endfor %}</select></div>
+<div class="col-sm-4 col-lg-3"><label for="filter-category">Категория</label><select class="form-select" id="filter-category" name="category"><option value="">Все</option>{% for value in categories %}<option {% if request.GET.category == value %}selected{% endif %}>{{ value }}</option>{% endfor %}</select></div>
+<div class="col-sm-4 col-lg-3"><label for="filter-level">Уровень риска</label><select class="form-select" id="filter-level" name="risk_level"><option value="">Все</option>{% for value in levels %}<option {% if request.GET.risk_level == value %}selected{% endif %}>{{ value }}</option>{% endfor %}</select></div>
+<div><button class="btn btn-primary" type="submit">Применить</button> <a href="{% url 'history' %}">Сбросить фильтры</a></div></form>
+{% if filter_errors %}<div class="alert alert-danger" role="alert">Некорректные фильтры {{ filter_errors }}</div>{% endif %}
+{% if page_obj.object_list %}
+<div class="table-responsive"><table class="table"><thead><tr><th>Дата</th><th>Тип</th><th>Ввод</th><th>Категория</th><th>Уровень риска</th><th>Risk Score</th><th>Действия</th></tr></thead><tbody>
+{% for check in page_obj %}<tr><td>{{ check.created_at|date:'d.m.Y H:i' }}</td><td>{{ check.check_type }}</td><td>{{ check.display_input|slice:':60' }}{% if check.demo_key %}<small class="d-block">Искусственный пример</small>{% endif %}</td><td>{{ check.category }}</td><td>{{ check.risk_level|default:'—' }}</td><td>{{ check.risk_score|default_if_none:'—' }}</td><td><a href="{% url 'check-result' check.pk %}">Подробнее</a><form method="post" action="{% url 'check-delete' check.pk %}">{% csrf_token %}<label><input type="checkbox" name="confirm" value="yes" required> Подтверждаю удаление</label><button type="submit" class="btn btn-sm btn-outline-danger">Удалить</button></form></td></tr>{% endfor %}
+</tbody></table></div>
+<nav aria-label="Страницы истории">{% if page_obj.has_previous %}<a href="?{{ filter_query }}&amp;page={{ page_obj.previous_page_number }}">Назад</a>{% endif %} <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span> {% if page_obj.has_next %}<a href="?{{ filter_query }}&amp;page={{ page_obj.next_page_number }}">Далее</a>{% endif %}</nav>
+{% else %}<p>Проверок не найдено. <a href="{% url 'check-sms' %}">Проверить SMS</a></p>{% endif %}
+{% endblock %}

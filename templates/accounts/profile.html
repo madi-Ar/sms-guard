@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Профиль — SMS Guard{% endblock %}
+{% block content %}
+<h1>Профиль</h1>
+<p>Имя пользователя <strong>{{ user.username }}</strong></p><p>Email {{ user.email|default:'Не указан' }}</p>
+<section class="info-card mb-4"><h2>Настройки</h2>
+<form method="post">{% csrf_token %}<input type="hidden" name="action" value="preferences">
+{{ preferences.as_p }}
+<p>Согласие применяется только к новым SMS. Изменение настройки не восстанавливает старые тексты и не удаляет ранее сохранённые. Язык сохраняется как предпочтение, интерфейс пока русскоязычный.</p>
+<button class="btn btn-primary" type="submit">Сохранить настройки</button></form></section>
+<section class="info-card mb-4"><h2>Смена пароля</h2>
+<form method="post">{% csrf_token %}<input type="hidden" name="action" value="password">{{ password_form.as_p }}
+<button class="btn btn-primary" type="submit">Изменить пароль</button></form></section>
+<section class="info-card"><h2>Удаление истории</h2><p>Все ваши проверки и связанные результаты будут удалены без возможности восстановления.</p>
+<form method="post">{% csrf_token %}<input type="hidden" name="action" value="delete_history">
+<label><input type="checkbox" name="confirm" value="yes" required> Подтверждаю удаление всей моей истории</label>
+<button class="btn btn-outline-danger d-block mt-3" type="submit">Удалить всю мою историю</button></form></section>
+{% endblock %}

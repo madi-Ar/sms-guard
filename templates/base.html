@@ -17,6 +17,7 @@
   <nav class="container site-navigation" aria-label="Основная навигация">
     <a class="brand" href="{% url 'dashboard-index' %}"><span class="brand-mark" aria-hidden="true">S</span> SMS Guard</a>
     <div class="nav-pages">
+      {% if user.is_authenticated %}<a href="{% url 'history' %}">История</a><a href="{% url 'profile' %}">Профиль</a>{% endif %}
       <a href="{% url 'check-sms' %}" {% if request.path == '/check/sms/' %}aria-current="page"{% endif %}>Проверка SMS</a>
       <a href="{% url 'check-url' %}" {% if request.path == '/check/url/' %}aria-current="page"{% endif %}>Проверка ссылки</a>
     </div>
@@ -35,6 +36,7 @@
 <div hidden id="csrf-container">{% csrf_token %}</div>
 <p id="session-error" class="container field-error mt-3" role="alert" aria-live="polite" hidden></p>
 <main id="main-content" class="container py-4 py-md-5">
+  {% for message in messages %}<p class="alert alert-info" role="status">{{ message }}</p>{% endfor %}
   {% block content %}{% endblock %}
 </main>
 <footer class="container site-footer">

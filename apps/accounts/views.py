@@ -1,10 +1,14 @@
 """Сессионный вход с CSRF, без записи учётных данных в журналы."""
 from django.shortcuts import redirect, render
-from django.views.decorators.http import require_GET
+from django.views.decorators.http import require_GET, require_http_methods
 
 import hashlib
 
 from django.contrib.auth import authenticate, get_user_model, login, logout
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 from django.core.cache import cache
 from django.db import IntegrityError, transaction
 from rest_framework.exceptions import AuthenticationFailed, Throttled, ValidationError
@@ -14,6 +18,9 @@ from rest_framework.views import APIView
 
 from apps.analysis.api import APISessionAuthentication
 from .serializers import LoginInput, RegisterInput
+from apps.analysis.models import Check
+from .forms import ProfileForm
+from .models import UserProfile
 
 
 class PublicAuthView(APIView):
@@ -71,3 +78,34 @@ def auth_page(request, mode):
     if request.user.is_authenticated:
         return redirect('check-sms')
     return render(request, 'accounts/auth.html', {'mode': mode})
+
+
+@login_required(login_url='/login/')
+@require_http_methods(['GET', 'POST'])
+def profile_page(request):
+    profile, _ = UserProfile.objects.get_or_create(user=request.user)
+    preferences = ProfileForm(instance=profile)
+    password = PasswordChangeForm(request.user)
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        if action == 'preferences':
+            preferences = ProfileForm(request.POST, instance=profile)
+            if preferences.is_valid():
+                preferences.save()
+                messages.success(request, 'Настройки сохранены. Согласие действует на новые проверки.')
+                return redirect('profile')
+        elif action == 'password':
+            password = PasswordChangeForm(request.user, request.POST)
+            if password.is_valid():
+                user = password.save()
+                update_session_auth_hash(request, user)
+                messages.success(request, 'Пароль изменён.')
+                return redirect('profile')
+        elif action == 'delete_history' and request.POST.get('confirm') == 'yes':
+            with transaction.atomic():
+                Check.objects.filter(user=request.user).delete()
+            messages.success(request, 'Вся ваша история удалена.')
+            return redirect('profile')
+        else:
+            messages.error(request, 'Подтвердите удаление отдельным флажком.')
+    return render(request, 'accounts/profile.html', {'preferences': preferences, 'password_form': password})

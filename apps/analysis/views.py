@@ -1,9 +1,7 @@
 """API поверх существующего анализа; история содержит маскированный ввод."""
-from copy import deepcopy
 import logging
 from time import perf_counter
 
-from django.db import transaction
 from django.db.models import Avg, Count, Q
 from django.middleware.csrf import get_token
 from django.shortcuts import get_object_or_404
@@ -17,51 +15,9 @@ from . import services
 from .api import CheckThrottle, ModelUnavailable
 from .models import Check
 from .serializers import HistoryFilters, SMSInput, URLInput
+from .persistence import mask_input, private_result, save_check
 
 logger = logging.getLogger(__name__)
-
-
-def mask_input(value):
-    return ''.join(' ' if c.isspace() else '•' for c in value)
-
-
-def private_result(result, source):
-    """Удаляем исходный ввод и адреса, способные содержать пароли и коды."""
-    allowed = {'type', 'language', 'category', 'risk_level', 'risk_score', 'p_sms',
-               'p_url', 'p_url_max', 'urls', 'url', 'features', 'explanation',
-               'recommendation', 'disclaimer', 'model_versions'}
-    data = deepcopy({k: v for k, v in result.items() if k in allowed})
-    secrets = [source]
-    if data.get('url'):
-        secrets.append(data['url'])
-    secrets.extend(item['url'] for item in data.get('urls', []) if item.get('url'))
-
-    def clean(value, key=''):
-        if key == 'url' and isinstance(value, str):
-            return mask_input(value)
-        if isinstance(value, dict):
-            return {k: clean(v, k) for k, v in value.items()}
-        if isinstance(value, list):
-            return [clean(v, key) for v in value]
-        if isinstance(value, str) and key not in {'type', 'language', 'category', 'risk_level'}:
-            for secret in sorted(set(secrets), key=len, reverse=True):
-                if secret:
-                    value = value.replace(secret, mask_input(secret))
-        return value
-    return clean(data)
-
-
-@transaction.atomic
-def save_check(user, check_type, source, result):
-    safe = private_result(result, source)
-    check = Check.objects.create(
-        user=user, type=check_type, category=result['category'],
-        risk_level=result.get('risk_level'), risk_score=result.get('risk_score'),
-        p_sms=result.get('p_sms'), p_url=result.get('p_url'),
-        p_url_max=result.get('p_url_max'), masked_input=mask_input(source), result_json=safe)
-    check.result_json.update(id=check.pk, created_at=check.created_at.isoformat())
-    check.save(update_fields=['result_json'])
-    return check
 
 
 class CheckView(APIView):
@@ -100,7 +56,26 @@ class URLCheckView(CheckView):
 
 
 def history_data(check):
-    return {**check.result_json, 'masked_input': check.masked_input}
+    data = {**check.result_json, 'masked_input': check.masked_input}
+    data.update(id=check.pk, type=check.type, category=check.category,
+                created_at=check.created_at.isoformat())
+    for name in ('language', 'risk_level', 'risk_score', 'p_sms', 'p_url', 'p_url_max',
+                 'explanation', 'recommendation'):
+        value = getattr(check, name)
+        if value is not None:
+            data[name] = value
+    versions = dict(data.get('model_versions') or {})
+    for kind in ('sms', 'url'):
+        version = getattr(check, f'{kind}_model_version')
+        if version is not None:
+            versions[kind] = version
+    if versions:
+        data['model_versions'] = versions
+    if check.input_text is not None:
+        data['input_text'] = check.input_text
+    if check.demo_key:
+        data['is_demo'] = True
+    return data
 
 
 class HistoryView(APIView):

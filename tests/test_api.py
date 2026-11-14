@@ -288,12 +288,14 @@ def test_wrong_csrf_token_and_origin_rejected(api):
     assert api.post(BASE + 'auth/logout/', HTTP_ORIGIN='https://evil.test').status_code == 403
 
 
-def test_sqli_xss_is_data_and_never_persisted(api, fake_services, caplog):
+def test_sqli_xss_is_data_and_not_stored_as_raw_sms(api, fake_services, caplog):
     text = "<script>alert('secret2974')</script>'; DROP TABLE auth_user; --"
     assert post_sms(api, text).status_code == 201
     fake_services[0].assert_called_once_with(text)
     check = Check.objects.get()
-    assert text not in check.masked_input and text not in json.dumps(check.result_json)
+    # Task 16 preserves safe text portions. This payload has no phone/card/money.
+    assert check.masked_input == text and check.input_text is None
+    assert text not in json.dumps(check.result_json)
     assert 'secret2974' not in caplog.text
     assert get_user_model().objects.count() == 1
 
