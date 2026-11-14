@@ -1,22 +1,42 @@
 {% extends 'base.html' %}
-{% block title %}SMS Guard — проверка сообщений и ссылок{% endblock %}
+{% load static %}
+{% block title %}Dashboard — SMS Guard{% endblock %}
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js" defer></script>
+<script src="{% static 'js/dashboard.js' %}" defer></script>
+{% endblock %}
 {% block content %}
-<section class="page-intro">
-  <p class="eyebrow">Анализ цифровых угроз</p>
-  <h1>Проверьте сообщение,<br class="d-none d-md-inline"> прежде чем действовать</h1>
-  <p class="intro-description">Анализ SMS и ссылок с объяснением признаков риска. Результат помогает оценить сообщение и принять решение.</p>
-</section>
-<div class="row g-4">
-  <div class="col-md-6"><section class="info-card h-100">
-    <span class="section-number">01 / Сообщения</span><h2 class="h4 mt-3">Проверка SMS</h2>
-    <p>Введите сообщение, чтобы получить оценку риска, признаки социальной инженерии и рекомендации.</p>
-    <a class="btn btn-primary" href="{% url 'check-sms' %}">Проверить сообщение</a>
-  </section></div>
-  <div class="col-md-6"><section class="info-card h-100">
-    <span class="section-number">02 / Ссылки</span><h2 class="h4 mt-3">Проверка ссылки</h2>
-    <p>Оцените структуру адреса. Ссылка анализируется как текст. Сайт не открывается.</p>
-    <a class="btn btn-outline-primary" href="{% url 'check-url' %}">Проверить ссылку</a>
-  </section></div>
-</div>
-<p class="notice mt-4">Оценка носит вероятностный характер и не гарантирует безопасность. Модель SMS обучена на англоязычном корпусе спама.</p>
+<section class="page-intro compact"><p class="eyebrow">Мониторинг проверок</p><h1>Dashboard</h1>
+<p class="intro-description">{% if user.is_staff %}Административная сводка по всем пользователям. Доступ к подробным результатам остаётся только у владельца.{% else %}Сводка ваших проверок SMS и ссылок.{% endif %}</p></section>
+{% if period_error %}<p class="alert alert-danger" role="alert">Период должен быть 7, 30 или 90 дней. <a href="{% url 'dashboard-index' %}">Открыть последние 30 дней</a></p>
+{% else %}
+<div id="dashboard" data-endpoint="{% url 'api-summary' %}">
+<form id="period-form" method="get" class="d-flex flex-wrap align-items-center gap-3 mb-3">
+<label for="period">Период</label><select class="form-select w-auto" name="period" id="period">
+<option value="7" {% if period == 7 %}selected{% endif %}>7 дней</option><option value="30" {% if period == 30 %}selected{% endif %}>30 дней</option><option value="90" {% if period == 90 %}selected{% endif %}>90 дней</option></select>
+<button class="btn btn-outline-primary" type="submit">Показать</button></form>
+<p id="dashboard-range" class="text-secondary"></p>
+<p id="dashboard-loading" class="loading" role="status"><span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Загрузка статистики…</p>
+<p id="dashboard-error" class="field-error" role="alert" hidden></p>
+<button id="dashboard-retry" class="btn btn-outline-primary mb-3" type="button" hidden>Повторить загрузку</button>
+<noscript><p>Для загрузки статистики и графиков включите JavaScript. <a href="{% url 'history' %}">Открыть историю</a></p></noscript>
+<div id="dashboard-data" hidden>
+<dl class="dashboard-metrics">
+<div class="info-card"><dt>Всего проверено SMS</dt><dd id="sms_count">0</dd></div>
+<div class="info-card"><dt>Всего проверено URL</dt><dd id="url_count">0</dd></div>
+<div class="info-card"><dt>Безопасных проверок</dt><dd id="safe_count">0</dd></div>
+<div class="info-card"><dt>Подозрительных проверок</dt><dd id="suspicious_count">0</dd></div>
+<div class="info-card"><dt>Опасных проверок</dt><dd id="dangerous_count">0</dd></div>
+<div class="info-card"><dt>Средний Risk Score</dt><dd id="average_risk_score">—</dd></div></dl>
+<p class="notice">В группе «Опасные» объединены FRAUDULENT для SMS и DANGEROUS для URL. Средний Risk Score учитывает только числовые оценки. Все показатели относятся к выбранному периоду.</p>
+<section id="dashboard-empty" class="info-card mb-4" hidden><h2 class="h4">Пока нет проверок</h2><p>За выбранный период проверки не найдены.</p><a class="btn btn-primary" href="{% url 'check-sms' %}">Проверить SMS</a></section>
+<p id="chart-error" class="field-error" role="status" hidden></p>
+<div class="row g-4 mb-4">
+<div class="col-lg-5"><section class="info-card h-100"><h2 class="h4">Распределение категорий</h2><p id="categories-empty" hidden>Нет данных за выбранный период.</p><div class="dashboard-chart"><canvas id="categories-chart" role="img" aria-label="Кольцевая диаграмма категорий. Числа доступны в таблице ниже."></canvas></div><div id="categories-text" class="table-responsive"></div></section></div>
+<div class="col-lg-7"><section class="info-card h-100"><h2 class="h4">Проверки по дням</h2><p id="daily-empty" hidden>Нет данных за выбранный период.</p><div class="dashboard-chart"><canvas id="daily-chart" role="img" aria-label="Проверки по дням. Числа доступны в таблице ниже."></canvas></div><details><summary>Числа по дням</summary><div id="daily-text" class="table-responsive dashboard-daily-table"></div></details></section></div>
+<div class="col-12"><section class="info-card"><h2 class="h4">Топ-5 групп социальной инженерии</h2><p id="features-empty" hidden>Сработавших групп за выбранный период нет.</p><div class="dashboard-chart"><canvas id="features-chart" role="img" aria-label="Наиболее частые группы социальной инженерии. Числа доступны в таблице ниже."></canvas></div><div id="features-text" class="table-responsive"></div></section></div></div>
+<section class="info-card"><h2 class="h4">Последние десять проверок за выбранный период</h2><p id="recent-empty" hidden>Проверок пока нет.</p><div id="recent-checks" class="table-responsive"></div></section>
+{% if user.is_staff %}<section class="info-card mt-4"><h2 class="h4">Активные версии моделей</h2><p id="models-empty" hidden>Сведения об активных моделях отсутствуют.</p><div id="active-models" class="table-responsive"></div></section>{% endif %}
+</div></div>
+{% endif %}
 {% endblock %}

@@ -17,6 +17,7 @@
   <nav class="container site-navigation" aria-label="Основная навигация">
     <a class="brand" href="{% url 'dashboard-index' %}"><span class="brand-mark" aria-hidden="true">S</span> SMS Guard</a>
     <div class="nav-pages">
+      {% if user.is_authenticated %}<a href="{% url 'dashboard-index' %}" {% if request.path == '/' %}aria-current="page"{% endif %}>Dashboard</a>{% endif %}
       {% if user.is_authenticated %}<a href="{% url 'history' %}">История</a><a href="{% url 'profile' %}">Профиль</a>{% endif %}
       <a href="{% url 'check-sms' %}" {% if request.path == '/check/sms/' %}aria-current="page"{% endif %}>Проверка SMS</a>
       <a href="{% url 'check-url' %}" {% if request.path == '/check/url/' %}aria-current="page"{% endif %}>Проверка ссылки</a>

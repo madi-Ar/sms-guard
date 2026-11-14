@@ -322,8 +322,9 @@ def test_stats_scope_and_nullable_risk(api, user):
     other = get_user_model().objects.create_user('other')
     create_check(other, risk_score=80)
     result = api.get(BASE + 'stats/summary/').json()
-    assert result == {'sms_count': 1, 'url_count': 1, 'average_risk_score': 20.0,
-                      'categories': {'SAFE': 1, 'DANGEROUS': 1}}
+    expected = {'sms_count': 1, 'url_count': 1, 'average_risk_score': 20.0,
+                'categories': {'SAFE': 1, 'DANGEROUS': 1}}
+    assert {key: result[key] for key in expected} == expected
     user.is_staff = True
     user.save()
     result = api.get(BASE + 'stats/summary/').json()
@@ -384,5 +385,7 @@ def test_login_does_not_log_credentials(anonymous, user, caplog):
 
 
 def test_no_user_data_in_empty_statistics(api):
-    assert api.get(BASE + 'stats/summary/').json() == {
+    expected = {
         'sms_count': 0, 'url_count': 0, 'average_risk_score': None, 'categories': {}}
+    result = api.get(BASE + 'stats/summary/').json()
+    assert {key: result[key] for key in expected} == expected

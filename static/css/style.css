@@ -5,6 +5,13 @@
   --border: #dce3ed;
   --bs-primary: #1d4ed8;
 }
+.dashboard-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.dashboard-metrics dt { font-weight: 500; color: var(--muted); }
+.dashboard-metrics dd { font-size: 2rem; font-weight: 700; margin: .6rem 0 0; }
+.dashboard-chart { position: relative; height: 310px; margin-bottom: 1rem; }
+.dashboard-daily-table { max-height: 320px; overflow: auto; }
+@media (max-width: 767px) { .dashboard-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .dashboard-metrics { grid-template-columns: 1fr; } }
 body {
   min-height: 100vh;
   margin: 0;

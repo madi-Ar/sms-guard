@@ -2,7 +2,6 @@
 import logging
 from time import perf_counter
 
-from django.db.models import Avg, Count, Q
 from django.middleware.csrf import get_token
 from django.shortcuts import get_object_or_404
 from rest_framework.pagination import PageNumberPagination
@@ -110,12 +109,9 @@ class CheckDetailView(APIView):
 
 class SummaryView(APIView):
     def get(self, request):
-        query = Check.objects.all() if request.user.is_staff else Check.objects.filter(user=request.user)
-        result = query.aggregate(sms_count=Count('id', filter=Q(type='sms')),
-                                 url_count=Count('id', filter=Q(type='url')),
-                                 average_risk_score=Avg('risk_score'))
-        result['categories'] = dict(query.order_by().values_list('category').annotate(count=Count('id')))
-        return Response(result)
+        from apps.dashboard.statistics import parse_period, summary
+        period = parse_period(request.query_params.get('period', '30'))
+        return Response(summary(request.user, period))
 
 
 class HealthView(APIView):
