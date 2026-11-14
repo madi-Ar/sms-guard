@@ -1,0 +1,70 @@
+{
+  "sms_100_requests": {
+    "requests": 100,
+    "mean_ms": 153.06719199943473,
+    "max_ms": 253.50150000303984,
+    "warmup_ms": 399.04249999381136,
+    "limit_ms": 500,
+    "passes": true,
+    "real_models": true,
+    "throttle_clock_spacing_seconds": 3
+  },
+  "dashboard_1000_rows": {
+    "api": {
+      "requests": 10,
+      "mean_ms": 40.99685999826761,
+      "max_ms": 45.76049999741372,
+      "passes": true
+    },
+    "html": {
+      "requests": 10,
+      "mean_ms": 10.157969997089822,
+      "max_ms": 12.151499991887249,
+      "passes": true
+    }
+  },
+  "rate_limit_40_requests": {
+    "requests": 40,
+    "accepted": 30,
+    "rejected_429": 10,
+    "mean_ms": 13.980497500233469,
+    "max_ms": 34.04319999390282
+  },
+  "five_real_http_flows": [
+    {
+      "scenario": "A",
+      "category": "SAFE",
+      "risk_score": 1,
+      "history_detail_dashboard": "PASS",
+      "real_models": true
+    },
+    {
+      "scenario": "B",
+      "category": "SAFE",
+      "risk_score": 22,
+      "history_detail_dashboard": "PASS",
+      "real_models": true
+    },
+    {
+      "scenario": "C",
+      "category": "FRAUDULENT",
+      "risk_score": 93,
+      "history_detail_dashboard": "PASS",
+      "real_models": true
+    },
+    {
+      "scenario": "D",
+      "category": "DANGEROUS",
+      "risk_score": null,
+      "history_detail_dashboard": "PASS",
+      "real_models": true
+    },
+    {
+      "scenario": "E",
+      "category": "SAFE",
+      "risk_score": 15,
+      "history_detail_dashboard": "PASS",
+      "real_models": true
+    }
+  ]
+}

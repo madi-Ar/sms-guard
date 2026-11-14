@@ -1,0 +1,1216 @@
+{
+  "generated_at": "2026-11-14T05:19:06.285594+00:00",
+  "sms": {
+    "rows": 771,
+    "threshold": 0.07675798320542866,
+    "historical_pre_refit": {
+      "accuracy": 0.9494163424124513,
+      "precision": 0.7288135593220338,
+      "recall": 0.9247311827956989,
+      "f1": 0.8151658767772512,
+      "f2": 0.8775510204081632,
+      "roc_auc": 0.9790655628508896,
+      "pr_auc": 0.9506300262113972,
+      "confusion_matrix": [
+        [
+          646,
+          32
+        ],
+        [
+          7,
+          86
+        ]
+      ]
+    },
+    "saved_model": {
+      "accuracy": 0.953307392996109,
+      "precision": 0.7435897435897436,
+      "recall": 0.9354838709677419,
+      "f1": 0.8285714285714286,
+      "macro_precision": 0.8672077158315691,
+      "macro_recall": 0.9456180416785612,
+      "macro_f1": 0.9007722007722008,
+      "roc_auc": 0.9782091540584261,
+      "pr_auc": 0.9504752533059182,
+      "f2": 0.8895705521472392,
+      "confusion_matrix": [
+        [
+          648,
+          30
+        ],
+        [
+          6,
+          87
+        ]
+      ]
+    },
+    "latency": {
+      "requests": 100,
+      "mean_ms": 5.893282999895746,
+      "max_ms": 9.162399990600534
+    }
+  },
+  "url": {
+    "rows": 8660,
+    "t1": 0.06321828336412233,
+    "t2": 0.3173583761060298,
+    "metrics": {
+      "accuracy": 0.9812933025404157,
+      "precision": 0.9830705009276438,
+      "recall": 0.9794362292051756,
+      "f1": 0.98125,
+      "macro_precision": 0.9813006598474465,
+      "macro_recall": 0.981292445165838,
+      "macro_f1": 0.981293202764977,
+      "roc_auc": 0.9935497268745851,
+      "pr_auc": 0.9952069005419717,
+      "f2": 0.9801609322974473,
+      "confusion_matrix": [
+        [
+          4259,
+          73
+        ],
+        [
+          89,
+          4239
+        ]
+      ]
+    },
+    "saved_metrics": {
+      "accuracy": 0.9812933025404157,
+      "roc_auc": 0.9935497268745851,
+      "pr_auc": 0.9952069005419717,
+      "f2": 0.9801609322974473,
+      "precision": 0.9830705009276438,
+      "recall": 0.9794362292051756,
+      "f1": 0.98125,
+      "macro_precision": 0.9813006598474465,
+      "macro_recall": 0.981292445165838,
+      "macro_f1": 0.981293202764977,
+      "confusion_matrix": [
+        [
+          4259,
+          73
+        ],
+        [
+          89,
+          4239
+        ]
+      ]
+    },
+    "latency_numeric_features": {
+      "requests": 100,
+      "mean_ms": 14.640322000050219,
+      "max_ms": 27.14580000611022
+    },
+    "domain_overlap": false,
+    "dataset_hashes_match": true
+  },
+  "languages": {
+    "ru": {
+      "rows": 100,
+      "classifier": {
+        "accuracy": 0.28,
+        "precision": 0.3472222222222222,
+        "recall": 0.5,
+        "f1": 0.4098360655737705,
+        "macro_precision": 0.22718253968253968,
+        "macro_recall": 0.28,
+        "macro_f1": 0.24337957124842372,
+        "roc_auc": 0.5002,
+        "pr_auc": 0.7141286699745533,
+        "f2": 0.45955882352941174,
+        "confusion_matrix": [
+          [
+            3,
+            47
+          ],
+          [
+            25,
+            25
+          ]
+        ]
+      },
+      "joint_recall_non_safe": 0.5,
+      "joint_recall_fraudulent": 0.44
+    },
+    "kk": {
+      "rows": 50,
+      "classifier": {
+        "accuracy": 0.26,
+        "precision": 0.34210526315789475,
+        "recall": 0.52,
+        "f1": 0.4126984126984127,
+        "macro_precision": 0.17105263157894737,
+        "macro_recall": 0.26,
+        "macro_f1": 0.20634920634920634,
+        "roc_auc": 0.52,
+        "pr_auc": 0.7292773950588405,
+        "f2": 0.47101449275362317,
+        "confusion_matrix": [
+          [
+            0,
+            25
+          ],
+          [
+            12,
+            13
+          ]
+        ]
+      },
+      "joint_recall_non_safe": 0.4,
+      "joint_recall_fraudulent": 0.32
+    }
+  },
+  "errors": [
+    {
+      "model": "SMS",
+      "kind": "FP",
+      "test_position": 28,
+      "source_id": 2929,
+      "language": "en",
+      "input": "Ok... U enjoy ur shows...",
+      "true": 0,
+      "predicted": 1,
+      "probability": 0.14073858328398273,
+      "url_features": null
+    },
+    {
+      "model": "SMS",
+      "kind": "FP",
+      "test_position": 35,
+      "source_id": 2385,
+      "language": "en",
+      "input": "Your pussy is perfect!",
+      "true": 0,
+      "predicted": 1,
+      "probability": 0.1083650054627803,
+      "url_features": null
+    },
+    {
+      "model": "SMS",
+      "kind": "FP",
+      "test_position": 50,
+      "source_id": 1057,
+      "language": "en",
+      "input": "I'm at work. Please call",
+      "true": 0,
+      "predicted": 1,
+      "probability": 0.13867287463948072,
+      "url_features": null
+    },
+    {
+      "model": "SMS",
+      "kind": "FP",
+      "test_position": 113,
+      "source_id": 1988,
+      "language": "en",
+      "input": "S..antha num corrct dane",
+      "true": 0,
+      "predicted": 1,
+      "probability": 0.26896319536131874,
+      "url_features": null
+    },
+    {
+      "model": "SMS",
+      "kind": "FP",
+      "test_position": 159,
+      "source_id": 3850,
+      "language": "en",
+      "input": "Can you plz tell me the ans. BSLVYL sent via [address omitted]",
+      "true": 0,
+      "predicted": 1,
+      "probability": 0.10372153507538696,
+      "url_features": null
+    },
+    {
+      "model": "SMS",
+      "kind": "FN",
+      "test_position": 136,
+      "source_id": 1639,
+      "language": "en",
+      "input": "*A$NETWORKS allow companies to bill for SMS, so they are responsible for their \"suppliers\", just as a shop has to give a guarantee on what they sell. B. G.",
+      "true": 1,
+      "predicted": 0,
+      "probability": 0.010849184979652737,
+      "url_features": null
+    },
+    {
+      "model": "SMS",
+      "kind": "FN",
+      "test_position": 149,
+      "source_id": 2775,
+      "language": "en",
+      "input": "How come it takes so little time for a child who is afraid of the dark to become a teenager who wants to stay out all night?",
+      "true": 1,
+      "predicted": 0,
+      "probability": 0.000599922606639669,
+      "url_features": null
+    },
+    {
+      "model": "SMS",
+      "kind": "FN",
+      "test_position": 182,
+      "source_id": 1431,
+      "language": "en",
+      "input": "For sale - arsenal dartboard. Good condition but no doubles or trebles!",
+      "true": 1,
+      "predicted": 0,
+      "probability": 0.013031392971699193,
+      "url_features": null
+    },
+    {
+      "model": "SMS",
+      "kind": "FN",
+      "test_position": 582,
+      "source_id": 4950,
+      "language": "en",
+      "input": "Hi this is Amy, we will be sending you a free phone number in a couple of days, which will give you an access to all the adult parties...",
+      "true": 1,
+      "predicted": 0,
+      "probability": 0.003141925079374152,
+      "url_features": null
+    },
+    {
+      "model": "SMS",
+      "kind": "FN",
+      "test_position": 662,
+      "source_id": 5373,
+      "language": "en",
+      "input": "dating:i have had two of these. Only started after i sent a text to talk sport radio last week. Any connection do you think or coincidence?",
+      "true": 1,
+      "predicted": 0,
+      "probability": 0.0033753840129649385,
+      "url_features": null
+    },
+    {
+      "model": "URL",
+      "kind": "FP",
+      "test_position": 122,
+      "source_id": 3227,
+      "language": null,
+      "input": "https://redacted.example",
+      "true": 0,
+      "predicted": 1,
+      "probability": 0.3479372001016126,
+      "url_features": {
+        "is_https": 1.0,
+        "path_length": 0.0,
+        "query_param_count": 0.0
+      }
+    },
+    {
+      "model": "URL",
+      "kind": "FP",
+      "test_position": 290,
+      "source_id": 7822,
+      "language": null,
+      "input": "https://redacted.example",
+      "true": 0,
+      "predicted": 1,
+      "probability": 0.6398022351885104,
+      "url_features": {
+        "is_https": 1.0,
+        "path_length": 0.0,
+        "query_param_count": 0.0
+      }
+    },
+    {
+      "model": "URL",
+      "kind": "FP",
+      "test_position": 746,
+      "source_id": 21220,
+      "language": null,
+      "input": "https://redacted.example",
+      "true": 0,
+      "predicted": 1,
+      "probability": 0.810710510931495,
+      "url_features": {
+        "is_https": 1.0,
+        "path_length": 0.0,
+        "query_param_count": 0.0
+      }
+    },
+    {
+      "model": "URL",
+      "kind": "FP",
+      "test_position": 747,
+      "source_id": 21230,
+      "language": null,
+      "input": "https://redacted.example",
+      "true": 0,
+      "predicted": 1,
+      "probability": 0.34765267959252055,
+      "url_features": {
+        "is_https": 1.0,
+        "path_length": 0.0,
+        "query_param_count": 0.0
+      }
+    },
+    {
+      "model": "URL",
+      "kind": "FP",
+      "test_position": 766,
+      "source_id": 21719,
+      "language": null,
+      "input": "https://redacted.example",
+      "true": 0,
+      "predicted": 1,
+      "probability": 0.5235348047555853,
+      "url_features": {
+        "is_https": 1.0,
+        "path_length": 0.0,
+        "query_param_count": 0.0
+      }
+    },
+    {
+      "model": "URL",
+      "kind": "FN",
+      "test_position": 16,
+      "source_id": 295,
+      "language": null,
+      "input": "https://redacted.example",
+      "true": 1,
+      "predicted": 0,
+      "probability": 0.09796570402746765,
+      "url_features": {
+        "is_https": 1.0,
+        "path_length": 0.0,
+        "query_param_count": 0.0
+      }
+    },
+    {
+      "model": "URL",
+      "kind": "FN",
+      "test_position": 128,
+      "source_id": 3321,
+      "language": null,
+      "input": "https://redacted.example",
+      "true": 1,
+      "predicted": 0,
+      "probability": 0.2751578150577137,
+      "url_features": {
+        "is_https": 1.0,
+        "path_length": 0.0,
+        "query_param_count": 0.0
+      }
+    },
+    {
+      "model": "URL",
+      "kind": "FN",
+      "test_position": 206,
+      "source_id": 5405,
+      "language": null,
+      "input": "https://redacted.example",
+      "true": 1,
+      "predicted": 0,
+      "probability": 0.054682152514841785,
+      "url_features": {
+        "is_https": 1.0,
+        "path_length": 0.0,
+        "query_param_count": 0.0
+      }
+    },
+    {
+      "model": "URL",
+      "kind": "FN",
+      "test_position": 270,
+      "source_id": 7439,
+      "language": null,
+      "input": "https://redacted.example",
+      "true": 1,
+      "predicted": 0,
+      "probability": 0.29340983381129226,
+      "url_features": {
+        "is_https": 1.0,
+        "path_length": 0.0,
+        "query_param_count": 0.0
+      }
+    },
+    {
+      "model": "URL",
+      "kind": "FN",
+      "test_position": 362,
+      "source_id": 10286,
+      "language": null,
+      "input": "https://redacted.example",
+      "true": 1,
+      "predicted": 0,
+      "probability": 0.30078570674208427,
+      "url_features": {
+        "is_https": 1.0,
+        "path_length": 0.0,
+        "query_param_count": 0.0
+      }
+    }
+  ],
+  "demo": [
+    {
+      "number": 1,
+      "language": "ru",
+      "input": "Привет! Встречаемся завтра в 18:00 у входа в библиотеку.",
+      "expected": [
+        "SAFE"
+      ],
+      "matches": false,
+      "result": {
+        "id": null,
+        "type": "sms",
+        "language": "ru",
+        "category": "SUSPICIOUS",
+        "risk_level": "MEDIUM",
+        "risk_score": 55,
+        "p_sms": 0.7687854510306661,
+        "p_url_max": null,
+        "urls": [],
+        "features": {
+          "sms_label": 1,
+          "social_engineering_groups": []
+        },
+        "explanation": [
+          "SMS-модель: P_sms=0.769, вклад 54.91 балла.",
+          "Надёжность ML-оценки SMS для русского языка снижена: модель обучена на английском корпусе."
+        ],
+        "recommendation": "Не переходите по неожиданным ссылкам. Перепроверьте сообщение через официальный канал организации.",
+        "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества.",
+        "model_versions": {
+          "sms": "1.0.0",
+          "url": "1.0.0"
+        },
+        "created_at": null
+      }
+    },
+    {
+      "number": 2,
+      "language": "en",
+      "input": "Your order #4821 has been shipped and will arrive on Monday.",
+      "expected": [
+        "SAFE"
+      ],
+      "matches": true,
+      "result": {
+        "id": null,
+        "type": "sms",
+        "language": "en",
+        "category": "SAFE",
+        "risk_level": "LOW",
+        "risk_score": 10,
+        "p_sms": 0.13428553815132935,
+        "p_url_max": null,
+        "urls": [],
+        "features": {
+          "sms_label": 1,
+          "social_engineering_groups": []
+        },
+        "explanation": [
+          "Выраженных признаков риска не обнаружено; это не гарантирует безопасность."
+        ],
+        "recommendation": "Сохраняйте осторожность. При сомнениях проверьте отправителя через независимый официальный канал.",
+        "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества.",
+        "model_versions": {
+          "sms": "1.0.0",
+          "url": "1.0.0"
+        },
+        "created_at": null
+      }
+    },
+    {
+      "number": 3,
+      "language": "kk",
+      "input": "Сәлем! Ертең сағат 10:00-де кездесеміз бе?",
+      "expected": [
+        "SAFE"
+      ],
+      "matches": false,
+      "result": {
+        "id": null,
+        "type": "sms",
+        "language": "kk",
+        "category": "SUSPICIOUS",
+        "risk_level": "MEDIUM",
+        "risk_score": 56,
+        "p_sms": 0.788810438331013,
+        "p_url_max": null,
+        "urls": [],
+        "features": {
+          "sms_label": 1,
+          "social_engineering_groups": []
+        },
+        "explanation": [
+          "SMS-модель: P_sms=0.789, вклад 56.34 балла.",
+          "Надёжность ML-оценки SMS для казахского языка снижена: модель обучена на английском корпусе."
+        ],
+        "recommendation": "Не переходите по неожиданным ссылкам. Перепроверьте сообщение через официальный канал организации.",
+        "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества.",
+        "model_versions": {
+          "sms": "1.0.0",
+          "url": "1.0.0"
+        },
+        "created_at": null
+      }
+    },
+    {
+      "number": 4,
+      "language": "ru",
+      "input": "Ваш код подтверждения: 4821. Никому не сообщайте этот код.",
+      "expected": [
+        "SAFE",
+        "SUSPICIOUS"
+      ],
+      "matches": false,
+      "result": {
+        "id": null,
+        "type": "sms",
+        "language": "ru",
+        "category": "FRAUDULENT",
+        "risk_level": "HIGH",
+        "risk_score": 70,
+        "p_sms": 0.21784207773156813,
+        "p_url_max": null,
+        "urls": [],
+        "features": {
+          "sms_label": 1,
+          "social_engineering_groups": [
+            "CODE_REQUEST"
+          ]
+        },
+        "explanation": [
+          "Правило CODE_REQUEST: оценка не ниже 70 из-за запроса кодов/паролей.",
+          "Социальная инженерия: запрос кодов и паролей (CODE_REQUEST).",
+          "Надёжность ML-оценки SMS для русского языка снижена: модель обучена на английском корпусе."
+        ],
+        "recommendation": "Не переходите по ссылкам, не сообщайте коды и данные карт. Обратитесь в организацию через независимый официальный контакт.",
+        "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества.",
+        "model_versions": {
+          "sms": "1.0.0",
+          "url": "1.0.0"
+        },
+        "created_at": null
+      }
+    },
+    {
+      "number": 5,
+      "language": "ru",
+      "input": "Ваша карта заблокирована! Срочно подтвердите данные по ссылке: http://secure-bank-verify.example/login",
+      "expected": [
+        "FRAUDULENT"
+      ],
+      "matches": true,
+      "result": {
+        "id": null,
+        "type": "sms",
+        "language": "ru",
+        "category": "FRAUDULENT",
+        "risk_level": "HIGH",
+        "risk_score": 93,
+        "p_sms": 0.9894272068244103,
+        "p_url_max": 0.9953411904782281,
+        "urls": [
+          {
+            "url": "http://secure-bank-verify.example/login",
+            "p_url": 0.9953411904782281,
+            "category": "DANGEROUS",
+            "features": {
+              "url_length": 39,
+              "host_length": 26,
+              "path_length": 6,
+              "dot_count": 1,
+              "subdomain_count": 1,
+              "host_hyphen_count": 2,
+              "digit_count": 0,
+              "host_digit_ratio": 0.0,
+              "special_char_count": 0,
+              "is_ip": 0,
+              "is_https": 0,
+              "has_nonstandard_port": 0,
+              "has_at": 0,
+              "has_double_slash_path": 0,
+              "is_shortener": 0,
+              "suspicious_keyword_count": 4,
+              "has_punycode": 0,
+              "has_mixed_scripts": 0,
+              "is_brand_similar": 0,
+              "host_entropy": 4.023145853739677,
+              "has_suspicious_tld": 0,
+              "query_param_count": 0
+            },
+            "explanation": [
+              "В URL присутствуют подозрительные ключевые слова",
+              "Не используется HTTPS",
+              "URL-модель зависит от артефактов обучающего датасета и может ошибочно помечать обычные ссылки как опасные."
+            ],
+            "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества."
+          }
+        ],
+        "features": {
+          "sms_label": 1,
+          "social_engineering_groups": [
+            "URGENCY",
+            "BANK_CARD"
+          ]
+        },
+        "explanation": [
+          "SMS-модель: P_sms=0.989, вклад 49.47 балла.",
+          "URL-модель: P_url_max=0.995, вклад 29.86 балла.",
+          "Социальная инженерия: срочность (URGENCY).",
+          "Социальная инженерия: карты и реквизиты (BANK_CARD).",
+          "Надёжность ML-оценки SMS для русского языка снижена: модель обучена на английском корпусе.",
+          "URL-модель зависит от артефактов обучающего датасета и может ошибочно помечать обычные ссылки как опасные."
+        ],
+        "recommendation": "Не переходите по ссылкам, не сообщайте коды и данные карт. Обратитесь в организацию через независимый официальный контакт.",
+        "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества.",
+        "model_versions": {
+          "sms": "1.0.0",
+          "url": "1.0.0"
+        },
+        "created_at": null
+      }
+    },
+    {
+      "number": 6,
+      "language": "en",
+      "input": "URGENT: Your account will be suspended in 24 hours. Verify now at http://account-update.example/account-update",
+      "expected": [
+        "FRAUDULENT"
+      ],
+      "matches": true,
+      "result": {
+        "id": null,
+        "type": "sms",
+        "language": "en",
+        "category": "FRAUDULENT",
+        "risk_level": "HIGH",
+        "risk_score": 87,
+        "p_sms": 0.9993689598323021,
+        "p_url_max": 0.9961246602128445,
+        "urls": [
+          {
+            "url": "http://account-update.example/account-update",
+            "p_url": 0.9961246602128445,
+            "category": "DANGEROUS",
+            "features": {
+              "url_length": 44,
+              "host_length": 22,
+              "path_length": 15,
+              "dot_count": 1,
+              "subdomain_count": 1,
+              "host_hyphen_count": 1,
+              "digit_count": 0,
+              "host_digit_ratio": 0.0,
+              "special_char_count": 0,
+              "is_ip": 0,
+              "is_https": 0,
+              "has_nonstandard_port": 0,
+              "has_at": 0,
+              "has_double_slash_path": 0,
+              "is_shortener": 0,
+              "suspicious_keyword_count": 4,
+              "has_punycode": 0,
+              "has_mixed_scripts": 0,
+              "is_brand_similar": 0,
+              "host_entropy": 3.6635327548042547,
+              "has_suspicious_tld": 0,
+              "query_param_count": 0
+            },
+            "explanation": [
+              "В URL присутствуют подозрительные ключевые слова",
+              "Не используется HTTPS",
+              "URL-модель зависит от артефактов обучающего датасета и может ошибочно помечать обычные ссылки как опасные."
+            ],
+            "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества."
+          }
+        ],
+        "features": {
+          "sms_label": 1,
+          "social_engineering_groups": [
+            "URGENCY"
+          ]
+        },
+        "explanation": [
+          "SMS-модель: P_sms=0.999, вклад 49.97 балла.",
+          "URL-модель: P_url_max=0.996, вклад 29.88 балла.",
+          "Социальная инженерия: срочность (URGENCY).",
+          "Высокая SMS-оценка и URL >= t2: оценка не ниже 85.",
+          "В URL присутствуют подозрительные ключевые слова",
+          "URL-модель зависит от артефактов обучающего датасета и может ошибочно помечать обычные ссылки как опасные."
+        ],
+        "recommendation": "Не переходите по ссылкам, не сообщайте коды и данные карт. Обратитесь в организацию через независимый официальный контакт.",
+        "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества.",
+        "model_versions": {
+          "sms": "1.0.0",
+          "url": "1.0.0"
+        },
+        "created_at": null
+      }
+    },
+    {
+      "number": 7,
+      "language": "ru",
+      "input": "Мама, у меня проблемы, срочно переведи 50 000 на этот номер, потом всё объясню. Никому не говори.",
+      "expected": [
+        "FRAUDULENT"
+      ],
+      "matches": false,
+      "result": {
+        "id": null,
+        "type": "sms",
+        "language": "ru",
+        "category": "SAFE",
+        "risk_level": "LOW",
+        "risk_score": 22,
+        "p_sms": 0.16816416466307202,
+        "p_url_max": null,
+        "urls": [],
+        "features": {
+          "sms_label": 1,
+          "social_engineering_groups": [
+            "URGENCY"
+          ]
+        },
+        "explanation": [
+          "Социальная инженерия: срочность (URGENCY).",
+          "Надёжность ML-оценки SMS для русского языка снижена: модель обучена на английском корпусе."
+        ],
+        "recommendation": "Сохраняйте осторожность. При сомнениях проверьте отправителя через независимый официальный канал.",
+        "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества.",
+        "model_versions": {
+          "sms": "1.0.0",
+          "url": "1.0.0"
+        },
+        "created_at": null
+      }
+    },
+    {
+      "number": 8,
+      "language": "en",
+      "input": "Congratulations! You won a $1000 gift card. Claim your prize: http://short.example/prize-claim-test",
+      "expected": [
+        "FRAUDULENT"
+      ],
+      "matches": true,
+      "result": {
+        "id": null,
+        "type": "sms",
+        "language": "en",
+        "category": "FRAUDULENT",
+        "risk_level": "HIGH",
+        "risk_score": 87,
+        "p_sms": 0.9999999925071279,
+        "p_url_max": 0.9983854129911205,
+        "urls": [
+          {
+            "url": "http://short.example/prize-claim-test",
+            "p_url": 0.9983854129911205,
+            "category": "DANGEROUS",
+            "features": {
+              "url_length": 37,
+              "host_length": 13,
+              "path_length": 17,
+              "dot_count": 1,
+              "subdomain_count": 1,
+              "host_hyphen_count": 0,
+              "digit_count": 0,
+              "host_digit_ratio": 0.0,
+              "special_char_count": 0,
+              "is_ip": 0,
+              "is_https": 0,
+              "has_nonstandard_port": 0,
+              "has_at": 0,
+              "has_double_slash_path": 0,
+              "is_shortener": 0,
+              "suspicious_keyword_count": 1,
+              "has_punycode": 0,
+              "has_mixed_scripts": 0,
+              "is_brand_similar": 0,
+              "host_entropy": 3.546593564294939,
+              "has_suspicious_tld": 0,
+              "query_param_count": 0
+            },
+            "explanation": [
+              "В URL присутствуют подозрительные ключевые слова",
+              "Не используется HTTPS",
+              "URL-модель зависит от артефактов обучающего датасета и может ошибочно помечать обычные ссылки как опасные."
+            ],
+            "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества."
+          }
+        ],
+        "features": {
+          "sms_label": 1,
+          "social_engineering_groups": [
+            "PRIZE"
+          ]
+        },
+        "explanation": [
+          "SMS-модель: P_sms=1.000, вклад 50.00 балла.",
+          "URL-модель: P_url_max=0.998, вклад 29.95 балла.",
+          "Социальная инженерия: призы и выигрыши (PRIZE).",
+          "Высокая SMS-оценка и URL >= t2: оценка не ниже 85.",
+          "В URL присутствуют подозрительные ключевые слова",
+          "URL-модель зависит от артефактов обучающего датасета и может ошибочно помечать обычные ссылки как опасные."
+        ],
+        "recommendation": "Не переходите по ссылкам, не сообщайте коды и данные карт. Обратитесь в организацию через независимый официальный контакт.",
+        "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества.",
+        "model_versions": {
+          "sms": "1.0.0",
+          "url": "1.0.0"
+        },
+        "created_at": null
+      }
+    },
+    {
+      "number": 9,
+      "language": "ru",
+      "input": "Сотрудник службы безопасности банка: назовите код из SMS для отмены подозрительной операции.",
+      "expected": [
+        "FRAUDULENT"
+      ],
+      "matches": false,
+      "result": {
+        "id": null,
+        "type": "sms",
+        "language": "ru",
+        "category": "SAFE",
+        "risk_level": "LOW",
+        "risk_score": 15,
+        "p_sms": 0.21570232370472792,
+        "p_url_max": null,
+        "urls": [],
+        "features": {
+          "sms_label": 1,
+          "social_engineering_groups": []
+        },
+        "explanation": [
+          "Выраженных признаков риска не обнаружено; это не гарантирует безопасность.",
+          "Надёжность ML-оценки SMS для русского языка снижена: модель обучена на английском корпусе."
+        ],
+        "recommendation": "Сохраняйте осторожность. При сомнениях проверьте отправителя через независимый официальный канал.",
+        "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества.",
+        "model_versions": {
+          "sms": "1.0.0",
+          "url": "1.0.0"
+        },
+        "created_at": null
+      }
+    },
+    {
+      "number": 10,
+      "language": "kk",
+      "input": "Картаңыз бұғатталды. Жедел түрде мына сілтеме арқылы растаңыз: http://bank-kz-verify.test",
+      "expected": [
+        "SUSPICIOUS",
+        "FRAUDULENT"
+      ],
+      "matches": true,
+      "result": {
+        "id": null,
+        "type": "sms",
+        "language": "kk",
+        "category": "FRAUDULENT",
+        "risk_level": "HIGH",
+        "risk_score": 85,
+        "p_sms": 0.98101451524243,
+        "p_url_max": 0.9556775612585056,
+        "urls": [
+          {
+            "url": "http://bank-kz-verify.test",
+            "p_url": 0.9556775612585056,
+            "category": "DANGEROUS",
+            "features": {
+              "url_length": 26,
+              "host_length": 19,
+              "path_length": 0,
+              "dot_count": 1,
+              "subdomain_count": 0,
+              "host_hyphen_count": 2,
+              "digit_count": 0,
+              "host_digit_ratio": 0.0,
+              "special_char_count": 0,
+              "is_ip": 0,
+              "is_https": 0,
+              "has_nonstandard_port": 0,
+              "has_at": 0,
+              "has_double_slash_path": 0,
+              "is_shortener": 0,
+              "suspicious_keyword_count": 2,
+              "has_punycode": 0,
+              "has_mixed_scripts": 0,
+              "is_brand_similar": 0,
+              "host_entropy": 3.826874881864638,
+              "has_suspicious_tld": 0,
+              "query_param_count": 0
+            },
+            "explanation": [
+              "В URL присутствуют подозрительные ключевые слова",
+              "Не используется HTTPS",
+              "URL-модель зависит от артефактов обучающего датасета и может ошибочно помечать обычные ссылки как опасные."
+            ],
+            "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества."
+          }
+        ],
+        "features": {
+          "sms_label": 1,
+          "social_engineering_groups": []
+        },
+        "explanation": [
+          "SMS-модель: P_sms=0.981, вклад 49.05 балла.",
+          "URL-модель: P_url_max=0.956, вклад 28.67 балла.",
+          "Высокая SMS-оценка и URL >= t2: оценка не ниже 85.",
+          "В URL присутствуют подозрительные ключевые слова",
+          "Надёжность ML-оценки SMS для казахского языка снижена: модель обучена на английском корпусе.",
+          "URL-модель зависит от артефактов обучающего датасета и может ошибочно помечать обычные ссылки как опасные."
+        ],
+        "recommendation": "Не переходите по ссылкам, не сообщайте коды и данные карт. Обратитесь в организацию через независимый официальный контакт.",
+        "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества.",
+        "model_versions": {
+          "sms": "1.0.0",
+          "url": "1.0.0"
+        },
+        "created_at": null
+      }
+    },
+    {
+      "number": 11,
+      "language": "ru",
+      "input": "Ваша посылка ожидает оплаты таможенного сбора 350 ₸: http://post-delivery-pay.example",
+      "expected": [
+        "SUSPICIOUS",
+        "FRAUDULENT"
+      ],
+      "matches": true,
+      "result": {
+        "id": null,
+        "type": "sms",
+        "language": "ru",
+        "category": "FRAUDULENT",
+        "risk_level": "HIGH",
+        "risk_score": 85,
+        "p_sms": 0.9999406622847974,
+        "p_url_max": 0.9756254542259036,
+        "urls": [
+          {
+            "url": "http://post-delivery-pay.example",
+            "p_url": 0.9756254542259036,
+            "category": "DANGEROUS",
+            "features": {
+              "url_length": 32,
+              "host_length": 25,
+              "path_length": 0,
+              "dot_count": 1,
+              "subdomain_count": 1,
+              "host_hyphen_count": 2,
+              "digit_count": 0,
+              "host_digit_ratio": 0.0,
+              "special_char_count": 0,
+              "is_ip": 0,
+              "is_https": 0,
+              "has_nonstandard_port": 0,
+              "has_at": 0,
+              "has_double_slash_path": 0,
+              "is_shortener": 0,
+              "suspicious_keyword_count": 0,
+              "has_punycode": 0,
+              "has_mixed_scripts": 0,
+              "is_brand_similar": 0,
+              "host_entropy": 3.813660689688186,
+              "has_suspicious_tld": 0,
+              "query_param_count": 0
+            },
+            "explanation": [
+              "Не используется HTTPS",
+              "URL-модель зависит от артефактов обучающего датасета и может ошибочно помечать обычные ссылки как опасные."
+            ],
+            "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества."
+          }
+        ],
+        "features": {
+          "sms_label": 1,
+          "social_engineering_groups": []
+        },
+        "explanation": [
+          "SMS-модель: P_sms=1.000, вклад 50.00 балла.",
+          "URL-модель: P_url_max=0.976, вклад 29.27 балла.",
+          "Высокая SMS-оценка и URL >= t2: оценка не ниже 85.",
+          "Не используется HTTPS",
+          "Надёжность ML-оценки SMS для русского языка снижена: модель обучена на английском корпусе.",
+          "URL-модель зависит от артефактов обучающего датасета и может ошибочно помечать обычные ссылки как опасные."
+        ],
+        "recommendation": "Не переходите по ссылкам, не сообщайте коды и данные карт. Обратитесь в организацию через независимый официальный контакт.",
+        "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества.",
+        "model_versions": {
+          "sms": "1.0.0",
+          "url": "1.0.0"
+        },
+        "created_at": null
+      }
+    },
+    {
+      "number": 12,
+      "language": "URL",
+      "input": "https://www.example.com/about",
+      "expected": [
+        "SAFE"
+      ],
+      "matches": false,
+      "result": {
+        "url": "https://www.example.com/about",
+        "p_url": 0.772140104881297,
+        "category": "DANGEROUS",
+        "features": {
+          "url_length": 25,
+          "host_length": 11,
+          "path_length": 6,
+          "dot_count": 1,
+          "subdomain_count": 0,
+          "host_hyphen_count": 0,
+          "digit_count": 0,
+          "host_digit_ratio": 0.0,
+          "special_char_count": 0,
+          "is_ip": 0,
+          "is_https": 1,
+          "has_nonstandard_port": 0,
+          "has_at": 0,
+          "has_double_slash_path": 0,
+          "is_shortener": 0,
+          "suspicious_keyword_count": 0,
+          "has_punycode": 0,
+          "has_mixed_scripts": 0,
+          "is_brand_similar": 0,
+          "host_entropy": 3.095795255000934,
+          "has_suspicious_tld": 0,
+          "query_param_count": 0
+        },
+        "explanation": [
+          "URL-модель зависит от артефактов обучающего датасета и может ошибочно помечать обычные ссылки как опасные."
+        ],
+        "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества."
+      }
+    },
+    {
+      "number": 13,
+      "language": "URL",
+      "input": "http://xn--exmple-cua.test/secure/login?verify=1",
+      "expected": [
+        "DANGEROUS"
+      ],
+      "matches": true,
+      "result": {
+        "url": "http://xn--exmple-cua.test/secure/login?verify=1",
+        "p_url": 0.997597071808611,
+        "category": "DANGEROUS",
+        "features": {
+          "url_length": 48,
+          "host_length": 19,
+          "path_length": 13,
+          "dot_count": 1,
+          "subdomain_count": 0,
+          "host_hyphen_count": 3,
+          "digit_count": 1,
+          "host_digit_ratio": 0.0,
+          "special_char_count": 2,
+          "is_ip": 0,
+          "is_https": 0,
+          "has_nonstandard_port": 0,
+          "has_at": 0,
+          "has_double_slash_path": 0,
+          "is_shortener": 0,
+          "suspicious_keyword_count": 3,
+          "has_punycode": 1,
+          "has_mixed_scripts": 0,
+          "is_brand_similar": 0,
+          "host_entropy": 3.5368867237421675,
+          "has_suspicious_tld": 0,
+          "query_param_count": 1
+        },
+        "explanation": [
+          "В URL присутствуют подозрительные ключевые слова",
+          "Домен представлен или может быть представлен в Punycode",
+          "Не используется HTTPS",
+          "URL-модель зависит от артефактов обучающего датасета и может ошибочно помечать обычные ссылки как опасные."
+        ],
+        "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества."
+      }
+    }
+  ],
+  "diagnostics": {
+    "python_url": {
+      "url": "https://www.python.org/downloads/",
+      "p_url": 0.7819092625669001,
+      "category": "DANGEROUS",
+      "features": {
+        "url_length": 29,
+        "host_length": 10,
+        "path_length": 11,
+        "dot_count": 1,
+        "subdomain_count": 0,
+        "host_hyphen_count": 0,
+        "digit_count": 0,
+        "host_digit_ratio": 0.0,
+        "special_char_count": 0,
+        "is_ip": 0,
+        "is_https": 1,
+        "has_nonstandard_port": 0,
+        "has_at": 0,
+        "has_double_slash_path": 0,
+        "is_shortener": 0,
+        "suspicious_keyword_count": 0,
+        "has_punycode": 0,
+        "has_mixed_scripts": 0,
+        "is_brand_similar": 0,
+        "host_entropy": 3.1219280948873624,
+        "has_suspicious_tld": 0,
+        "query_param_count": 0
+      },
+      "explanation": [
+        "URL-модель зависит от артефактов обучающего датасета и может ошибочно помечать обычные ссылки как опасные."
+      ],
+      "disclaimer": "Оценка носит вероятностный характер и не гарантирует безопасность или отсутствие мошенничества. SMS-модель оценивает spam, а не доказанный факт мошенничества."
+    },
+    "bare_reserved_example_urls": [],
+    "code_request_phrases": [
+      {
+        "text": "Назовите код из SMS",
+        "groups": []
+      },
+      {
+        "text": "Продиктуйте код из сообщения",
+        "groups": []
+      },
+      {
+        "text": "Сообщите код подтверждения",
+        "groups": [
+          "CODE_REQUEST"
+        ]
+      },
+      {
+        "text": "Никому не сообщайте код подтверждения",
+        "groups": [
+          "CODE_REQUEST"
+        ]
+      }
+    ]
+  },
+  "protected_sha256": {
+    "data/processed/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "data/processed/sms_clean.csv": "59d3976cf87cceea6821686269da5c06e66b5740a5c9f9d7882c50dc48e7907f",
+    "data/processed/sms_raw.csv": "446287fe37082aaa17319533ad123b479aa575f399033a3f35ed0c1751a70082",
+    "data/processed/sms_split.json": "d554ef9aa05c48063784b73a622f117a8fac272dde04718b39d639edb1e71f40",
+    "data/processed/url_dataset_meta.json": "216a4836f81eca6eb6aa74fee73bd45acb243dc50a877b3dd32db3a5e134d5d5",
+    "data/processed/url_features.parquet": "0217cac669a72cca1a92f65d40f368e3a350c215ec3180c14596eecff2a5cac4",
+    "data/processed/url_split.json": "b13450eeb71239b0f07a759b7698b82a83e6bba698c71994e41a71aba83a8916",
+    "data/raw/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "data/raw/custom_ru_kk.csv": "44f6b698d59fdefa17755fb4386a82206c5522f7049ca97cec63e34a310e5667",
+    "data/raw/PhiUSIIL_Phishing_URL_Dataset.csv": "a236549cd369cd80bd478ff8e1779cbf44c58d5c3f79f7a51a1adbed7d06d1c6",
+    "data/raw/PhiUSIIL_Phishing_URL_Dataset.download.json": "66fd2b0531bd0d3577f4e0b7b2458411a5a0d817a01da8db444a90e111b68512",
+    "data/raw/phiusiil_phishing_url_dataset.zip": "0a639fd03aea6308c5b1c10c92aa23c2ce1505447a9137271865cd0badc9a59a",
+    "data/raw/SMSSpamCollection": "7d039a24a6083ed9ef0f806ebad56bbb976e3aeb8de05669173bfdc4996c239d",
+    "ml/artifacts/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ml/artifacts/risk_calibration.json": "58740f458b3b025ae4b9c594cde3564cda11449fd778028f973008ddb4b65f63",
+    "ml/artifacts/sms_baseline.joblib": "44a8a8b440f9504c707c1597f47824c16424c21fd37c1098f6793bfd5495916b",
+    "ml/artifacts/sms_model.joblib": "57a49a9b64537072e3a5abed0acc82702787a49fc1933c3220bd38735530bd92",
+    "ml/artifacts/sms_model_meta.json": "d8b472aed9dd470761764d889ba77eb9649cadc9dc0fd4b8e0b3237a5593b862",
+    "ml/artifacts/url_model.joblib": "8a3a5a17b29faf94a69c8dc0d7a5da4ab1821c6a6bda5813b8ea8f12aa895446",
+    "ml/artifacts/url_model_meta.json": "7261082d35d2c9485ab594c939b2165f7353de5f7b1be266e828eb848b9b2526",
+    "risk_config.yaml": "901e4b974a9736b16abdd011190c298b1723335b995b1d1ddcb9a01af2e18765",
+    "ml/rules.py": "cc203c93ee756fb3cd2a5d7cf9dd0a91ef5a7c29cb0b7c6d423d5191a4000a0a"
+  }
+}

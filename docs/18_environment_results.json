@@ -1,0 +1,123 @@
+{
+  "head": "44142be293cb52cfa4e3903d43514971afc1dc94",
+  "python": "3.12.14",
+  "working_debug": true,
+  "database": {
+    "integrity": "ok",
+    "unchanged_tables": 15,
+    "original_checks": 4,
+    "final_comparison": "all original rows and columns unchanged"
+  },
+  "protected_files": 34,
+  "all_protected_hashes_match": true,
+  "fresh_install": {
+    "dependency_install": "PASS",
+    "pip_check": "PASS",
+    "env_creation": "PASS",
+    "fresh_migrations": "PASS",
+    "manage_check": "PASS",
+    "health_login_redirect": "PASS",
+    "ml_artifacts_in_git": false,
+    "full_ml_without_artifact_transfer": "BLOCKED",
+    "initial_install_error": "WinError 5 in default pip wheel cache; resolved using isolated --cache-dir",
+    "trusted_artifact_transfer_inference": "PASS"
+  },
+  "language_diagnostics": {
+    "Japanese": "und",
+    "French": "en"
+  },
+  "logging": {
+    "handler": "logging.handlers.RotatingFileHandler",
+    "maxBytes": 1048576,
+    "backupCount": 5
+  },
+  "browser": {
+    "database": "separate copied SQLite; original preserved",
+    "observed_window_width_px": 643,
+    "scenarios": "A/B/C/D/E submitted using real browser and models",
+    "double_click": {
+      "clicks": 2,
+      "before_checks": 4,
+      "after_checks": 5,
+      "duplicates": 0,
+      "server_analysis_ms": 440.0
+    },
+    "all_three_responsive_widths": "NOT TESTED",
+    "dashboard_full_browser_timing": "NOT TESTED",
+    "video_recorded": false,
+    "actual_checks": [
+      {
+        "scenario": "A",
+        "id": 5,
+        "type": "sms",
+        "category": "SAFE",
+        "risk_score": 1,
+        "input_text_null": true
+      },
+      {
+        "scenario": "B",
+        "id": 6,
+        "type": "sms",
+        "category": "SAFE",
+        "risk_score": 22,
+        "input_text_null": true
+      },
+      {
+        "scenario": "C",
+        "id": 7,
+        "type": "sms",
+        "category": "FRAUDULENT",
+        "risk_score": 93,
+        "input_text_null": true
+      },
+      {
+        "scenario": "D",
+        "id": 9,
+        "type": "url",
+        "category": "DANGEROUS",
+        "risk_score": null,
+        "input_text_null": true
+      },
+      {
+        "scenario": "E",
+        "id": 8,
+        "type": "sms",
+        "category": "SAFE",
+        "risk_score": 15,
+        "input_text_null": true
+      },
+      {
+        "scenario": "XSS",
+        "id": 10,
+        "type": "sms",
+        "category": "SUSPICIOUS",
+        "risk_score": 59,
+        "input_text_null": true
+      }
+    ],
+    "xss_result_and_history": "literal text observed; no alert dialog",
+    "saved_detail": "check 10 loaded from API without new POST",
+    "dashboard_after": {
+      "sms": 8,
+      "url": 2,
+      "safe": 4,
+      "suspicious": 2,
+      "dangerous": 4,
+      "average_risk_score": 43.4
+    },
+    "isolated_server_stopped": true,
+    "original_browser_origin_restored": true,
+    "observed_return_path": "/en-US/?period=7"
+  },
+  "final_checks": {
+    "manage_check": "PASS",
+    "makemigrations_check_dry_run": "PASS",
+    "git_diff_check": "PASS",
+    "new_temp_directories_inside_project": false,
+    "working_user_data_preserved": true
+  },
+  "logs": {
+    "files_checked": 1,
+    "raw_demo_sms_found": false
+  }
+}
